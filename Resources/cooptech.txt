@@ -1,0 +1,1636 @@
+; Outpost 2: Divided Destiny
+; Research Tree for "The Exiles" Co-op Campaign
+;
+; Note: Each mission has an unresearchable "gateway" tech that must be given
+; to players by the mission script for the techs that unlock on that mission to
+; become available.
+
+
+;******************************************************************************
+; Free techs
+;
+;These techs are always available:
+;02101 Agridome                          02111 Common Metals Storage Tanks
+;02103 Command Center                    02112 Tokamak
+;02104 Structure Factory                 02114 Tube
+;02106 Basic Laboratory                  02701 Astronomy
+;02107 Light Tower                       02702 Chemistry
+;02108 Common Ore Mine                   02703 Boptronics
+;02109 Residence                         02704 Planetary Sciences
+;02110 Common Ore Smelter                02705 Social Sciences
+;02099 Spider                            02115 Trade Center
+;******************************************************************************
+
+BEGIN_TECH "Spider" 02099
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Agridome" 02101
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Command Center" 02103
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Structure Factory" 02104
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Basic Laboratory" 02106
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Light Tower" 02107
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Common Ore Mine" 02108
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Residence" 02109
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Common Ore Smelter" 02110
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Common Metals Storage Tanks" 02111
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Tokamak" 02112
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Tube" 02114
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Trade Center" 02115
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Astronomy" 02701
+    CATEGORY        1
+    DESCRIPTION     "Our astronomical database has been rebuilt, giving us increased knowledge of the possible resources and hazards of this part of space.  It can provide the basis for future research."
+    TEASER          "Astronomy is the study of matter and energy in the universe, particularly the composition and movement of celestial bodies.  Prior to our hurried departure, our astronomical database contained a great deal of information on nearby star systems and the local region of space.  This database was corrupted and must be rebuilt."
+    COST            400
+    MAX_SCIENTISTS  5
+    LAB             1
+END_TECH
+
+BEGIN_TECH "Boptronics" 02702
+    CATEGORY        1
+    DESCRIPTION     "Our boptronics database has been restored.  We will soon be able to develop new processes, techniques, and devices."
+    TEASER          "'Boptronics' refers to hybrid devices and systems which use electronic, biological and optical components.  Our colony is entirely dependent on this type of equipment, but our database of boptronic engineering techniques has been damaged.  Reassembling this data is a top priority for our survival."
+    COST            400
+    MAX_SCIENTISTS  5
+    LAB             1
+END_TECH
+
+BEGIN_TECH "Chemistry" 02703
+    CATEGORY        1
+    DESCRIPTION     "The chemical database has been reconstructed, and will provide the foundation of future scientific progress."
+    TEASER          "The science of chemistry investigates the composition and properties of materials.  Our databases contained all of Earth's knowledge of chemistry, as well as the results of many experiments carried out since we landed on New Terra; our studies in analytical chemistry, examining the composition of materials in the New Terrestrial soil are particularly valuable.  This chemical database must now be rebuilt."
+    COST            400
+    MAX_SCIENTISTS  5
+    LAB             1
+END_TECH
+
+BEGIN_TECH "Planetary Sciences" 02704
+    CATEGORY        1
+    DESCRIPTION     "Our planetary sciences database has been reassembled."
+    TEASER          "The planetary sciences data bank included studies of the soil, landforms, and atmosphere of New Terra, as well as all geoscientific research done on Earth and the solar system prior to the planet's destruction.  Restoration of this database is essential to our continued survival on New Terra."
+    COST            400
+    MAX_SCIENTISTS  5
+    LAB             1
+END_TECH
+
+BEGIN_TECH "Social Sciences" 02705
+    CATEGORY        1
+    DESCRIPTION     "Reclamation of the social sciences database is complete."
+    TEASER          "Our knowledge of psychology, sociology, economics, politics, and the other social sciences enable us to maintain the happiness and productivity of the colonists.  We must reconstruct this data to maintain order and civility."
+    COST            400
+    MAX_SCIENTISTS  5
+    LAB             1
+END_TECH
+
+;******************************************************************************
+; Mission 1
+;
+;At the start of this mission, these technologies are given for free:
+;03602 Large-Scale Optical Resonators (E)
+;03603 Focused Microwave Projections (P)
+;
+;By the end of the mission, these technologies must have been researched:
+;03401 Cybernetic Teleoperation 
+;03851 Mobile Weapons Platform
+;03301 Emergency Response Systems
+;03303 Health Maintenance
+;
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 3" 03000
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH "Standard Lab" 03101
+    CATEGORY        0
+    REQUIRES        03000
+    COST            0
+END_TECH
+
+BEGIN_TECH "Emergency Response Systems" 03301
+    CATEGORY        11
+    DESCRIPTION     "Structure Factories may now produce DIRT structure kits.  _______________________________________ Disaster Instant Response Teams (DIRTs) can reduce damage to structures.  Once the DIRT structure has been deployed, DIRT members trained in emergency medical care and structural reinforcement will be on the scene in a matter of seconds."
+    TEASER          "Allows production of DIRT structure kits at the Structure Factory.  _______________________________________  Given the new dangers confronting our colony, we need more protection against disaster than our emergency shelters are able to provide.  Unfortunately, those colonists trained in emergency response were killed before we could evacuate Eden.  This project will develop new methods, tools, and techniques to respond to structural damage."
+    REQUIRES        03000
+    COST            1000
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Metals Reclamation" 03302
+    CATEGORY        6
+    DESCRIPTION     "Structure Factories may now produce GORF structure kits.  _______________________________________ The Garbage and Ore Recycling Facility (GORF) uses a variant of the hot-cracking technology used at the Common Ore Smelter to extract usable Metals from deconstructed structures, unneeded structure kits, and rubble."
+    TEASER          "Allows production of GORF structure kits at the Structure Factory.  _______________________________________  With our growing needs, we can no longer afford to overlook any possible sources of Metals.  A few adaptations to our current Smelter technology may enable us to reclaim some of the materials in structures we no longer need."
+    REQUIRES        03000
+    EDEN_COST       700
+    PLYMOUTH_COST   900
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Health Maintenance" 03303
+    CATEGORY        11
+    DESCRIPTION     "Structure Factories may now produce Medical Center structure kits.  _______________________________________ Medical Center personnel are trained in a variety of techniques of preventive medicine as well as the treatment of illness and injury.  Each Medical Center can support the health needs of up to 40 colonists, improving the health and morale of the colony."
+    TEASER          "Allows production of Medical Center structure kits at the Structure Factory.  _______________________________________ Although our emergency medical systems are adequate to deal with accidents and disasters, our people are suffering from a lack of regular medical care.  We could exploit the vast medical knowledge in our databases to develop a regimen of health maintenance practices."
+    REQUIRES        03000
+    EDEN_COST       700
+    PLYMOUTH_COST   900
+    MAX_SCIENTISTS  6
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Nursery" 03304
+    CATEGORY        0
+    REQUIRES        03000
+    COST            0
+END_TECH
+
+BEGIN_TECH "University" 03305
+    CATEGORY        0
+    REQUIRES        03000
+    COST            0
+END_TECH
+
+BEGIN_TECH "Cybernetic Teleoperation" 03401
+    CATEGORY        4
+    DESCRIPTION     "Structure Factories may now produce Vehicle Factory and Robot Command Center structure kits.  _______________________________________ Our research has resulted in a specialized variant of the Command Center, with dedicated computers and communications capabilities.  In addition, all vehicle designs now include the less expensive Noesis computer, utilizing elements of the Savant technology.  This transfers much of the computing burden from the Robot Command Center to the vehicle itself."
+    TEASER          "Allows production of Robot Command Center and Vehicle Factory structure kits at the Structure Factory.  _______________________________________ Prior to the evacuation from our original colony site, Workers remotely operated our vehicles using a technology called Teleoperation.  Since the catastrophe, we no longer have enough Workers to teleoperate our vehicles.  The Savant computers at the Command Center have taken on part of this burden, but the job is taxing their capacity.  We need a specialized computer vehicle control system.  This Cybernetic Teleoperation project should allows us to operate a much larger number of vehicles."
+    REQUIRES        03000
+    EDEN_COST       800
+    PLYMOUTH_COST   1000
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH
+
+BEGIN_TECH "High-Temperature Superconductivity" 03402
+    CATEGORY        3
+    DESCRIPTION     "Tokamak Power output increased. _______________________________________ Our research into High-Temperature Superconductivity has resulted in the discovery of an alloy that is superconducting at 236 degrees Kelvin (-37 degrees Celsius), over 80 degrees higher than previous superconductors, improving power generation at our Tokamaks."
+    TEASER          "Increases Tokamak Power output.  _______________________________________ Superconductivity is the ability of certain materials to conduct electric current with no resistance and extremely low losses.  The best superconductive materials we have require an operating temperature of 152 degrees Kelvin (-121 degrees Celsius). Many new applications could be developed with a significant increase in the temperature of superconduction."
+    IMPROVE_DESC    "Increased Power output"
+    REQUIRES        03000
+    EDEN_COST       1100
+    PLYMOUTH_COST   1200
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP TOKAMAK Production_Capacity 300
+END_TECH
+
+BEGIN_TECH "Hydroponic Growing Media" 03403
+    CATEGORY        5
+    DESCRIPTION     "Food production increased.  _______________________________________ By adjusting the nutrients in the liquid in which our hydroponic crops are grown, we have been able to increase production at our Agridomes by 25%."
+    TEASER          "Increases Food production. _______________________________________ Our Agridomes use a variety of methods, including Hydroponics (soilless farming) to fill our Food requirements.  Some of our Agricultural Workers have ideas on ways to improve the growing medium in which our Hydroponic crops are grown."
+    IMPROVE_DESC    "Increased Food production"
+    REQUIRES        03000
+    EDEN_COST       1600
+    PLYMOUTH_COST   900
+    MAX_SCIENTISTS  10
+    LAB             2
+    UNIT_PROP AGRIDOME Production_Capacity 50
+END_TECH
+
+BEGIN_TECH "Metallogeny" 03405
+    CATEGORY        6
+    DESCRIPTION     "Common Ore Mine yield increased.  _______________________________________ Our Metallogenic research has developed a new technique of locating and exploiting veins of Ore.  This new method has increased Common Ore production."
+    TEASER          "Increases Common Ore Mine yield.  _______________________________________ Metallogeny is the branch of geology that seeks to define the relationship between the geological history of an area and its mineral deposits. Metallogenic research is aimed at achieving a better understanding of the nature and geological settings of base and precious metal deposits, and to use this understanding to help develop areas of high mineral potential."
+    IMPROVE_DESC    "Improved Common Ore yield"
+    REQUIRES        03000
+    EDEN_COST       1100
+    PLYMOUTH_COST   1200
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP MINE Improved 1
+END_TECH
+
+BEGIN_TECH "Environmental Psychology" 03406
+    CATEGORY        9
+    DESCRIPTION     "Residence capacity increased.  _______________________________________ Our expanded knowledge of the causes and effects of crowding and environmental and situational stressors has enabled us to redesign our Residences.  We can now house more people in the same space, while improving Morale."
+    TEASER          "Increases Residence capacity.  _______________________________________ Environmental Psychology studies the relationships between human behaviors and the environments in which they occur.  The forced evacuation of our old colony site has increased the stress on our Colonists; additional research in this field may help us to create a more supportive environment and improve Morale."
+    IMPROVE_DESC    "Increased Colonist capacity"
+    REQUIRES        03000
+    EDEN_COST       1500
+    PLYMOUTH_COST   800
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP RESIDENCE Production_Capacity 35
+END_TECH
+
+BEGIN_TECH "Large-Scale Optical Resonators" 03407
+    CATEGORY        7
+    DESCRIPTION     "The Laser weapon is now available.  Structure Factories may now produce Guard Post structure kits.  _______________________________________ Industrial laser torches provided the model for the Laser turret, whose large-scale optical resonators are capable of generating a beam that can slice through enemy targets quite easily."
+    TEASER          "Makes the Laser weapon available.  Allows production of Guard Post structure kits at the Structure Factory.  _______________________________________ Inter-colonial relations remain poor, making it prudent to develop some kind of defensive capability.  Our most promising research proposal derives from the welding and cutting lasers used at the Structure Factory.  The key development will be the design of an optical resonator large enough to produce a weapons-strength beam."
+    REQUIRES        03000
+    EDEN_COST       1200
+    PLYMOUTH_COST   0
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Focused Microwave Projection" 03408
+    CATEGORY        7
+    DESCRIPTION     "The Microwave weapon is now available.  Structure Factories may now produce Guard Post structure kits.  _______________________________________ We have refined the technology used in transmitting power between structures.  Our new emitters are capable of projecting a high-intensity beam of microwaves which will inflict heat damage on the target."
+    TEASER          "Makes the Microwave weapon available.  Allows production of Guard Post structure kits at the Structure Factory.  _______________________________________ Inter-colonial relations remain poor, making it prudent to develop some kind of defensive capability.  Our most promising research path lies in a refinement of the Microwave technology we use for transmitting power from our Tokamaks to the rest of the colony."
+    REQUIRES        03000
+    EDEN_COST       0
+    PLYMOUTH_COST   1200
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Robot Command Center" 03501
+    CATEGORY        0
+    REQUIRES        03401
+    COST            0
+END_TECH
+
+BEGIN_TECH "Vehicle Factory" 03502
+    CATEGORY        0
+    REQUIRES        03401
+    COST            0
+END_TECH
+
+BEGIN_TECH "Scout" 03601
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Laser Turret" 03602
+    CATEGORY        0
+    REQUIRES        03407
+    EDEN_COST       0
+    PLYMOUTH_COST   -1
+END_TECH
+
+BEGIN_TECH "Microwave Turret" 03603
+    CATEGORY        0
+    REQUIRES        03408
+    EDEN_COST       -1
+    PLYMOUTH_COST   0
+END_TECH
+
+BEGIN_TECH "Cargo Truck" 03604
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Construction Vehicle" 03605
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Earthworks Constructor" 03606
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Evacuation Transport" 03607
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Robo-Dozer" 03608
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Robo-Miner" 03609
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Robo-Surveyor" 03610
+    CATEGORY        0
+    REQUIRES        03502
+    COST            0
+END_TECH
+
+BEGIN_TECH "Guard Post" 03801
+    CATEGORY        0
+    REQUIRES        03407
+    REQUIRES        03408
+    COST            0
+END_TECH
+
+BEGIN_TECH "Mobile Weapons Platform" 03851
+    CATEGORY        4
+    DESCRIPTION     "Vehicle Factories may now produce Lynx.  _______________________________________ The 'Lynx' light combat chassis is a design adapted from existing vehicles.  The Lynx includes light armor-plating and a weapons hard point, to which a Laser turret (or any other weapons system we develop) may be attached."
+    TEASER          "Allows production of Lynx at the Vehicle Factory.  _______________________________________ While our Command Center staff is quite pleased with the new Guard Post/Laser structures, they point out that our defenses are rather inflexible, due to their lack of mobility.  At their suggestion, our Scientists have outlined a project for developing a mobile weapons platform, which can be armed with the Laser turret."
+    REQUIRES        03401
+    REQUIRES        03407
+    REQUIRES        03408
+    COST            1400
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Advanced Vehicle Power Plant" 03901
+    CATEGORY        4
+    DESCRIPTION     "Cargo Truck, Robo-Dozer, and Earthworker speeds improved.  _______________________________________ The new R-3000 series cool-fusion plant has been installed in all Cargo Trucks, Robo-Dozers, and Earthworkers, replacing the earlier R-2000 model.  This application of the High-Temperature Superconductivity technology has increased the speed of these three vehicles."
+    TEASER          "Increases speeds of the Cargo Truck, Robo-Dozer, and Earthworker.  _______________________________________ Several of the vehicle models we use are powered by the R-2000 cool-fusion plant.  Our work in High-Temperature Superconductivity may be applicable to an improvement of this power plant."
+    IMPROVE_DESC    "Increased speed"
+    REQUIRES        03402
+    COST            1500
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP BIG_TRUCK Move_Speed 3
+    UNIT_PROP BULL_DOZER Move_Speed 4
+    UNIT_PROP WALL_TRUCK Move_Speed 4
+    UNIT_PROP MOBILE_HOME Move_Speed 2
+END_TECH
+
+BEGIN_TECH "Seismology" 03201
+    CATEGORY        10
+    DESCRIPTION     "Early warning of seismic events now available. _______________________________________ We have developed equipment to detect certain hydrogeochemical early warning signals of seismic events.  Among the most reliable indicators are variations in the concentration of radon and carbon dioxide in the molten salts found in deep bore wells or in fumaroles.  These warnings should give us some time to idle structures in the vicinity of the epicenter, reducing damage to them."
+    TEASER          "Gives early warning of seismic events. _______________________________________ Our previous research on the geology of New Terra indicated that the planet was not subject to seismic activity; recent events, however, have changed the situation.  Our planetary sciences database shows that seismologists had developed methods of seismic event prediction on Earth; some of these techniques may be adaptable to New Terra."
+    REQUIRES        03000
+    COST            1700
+    MAX_SCIENTISTS  11
+    LAB             2
+END_TECH 
+
+BEGIN_TECH "Vulcanology" 03202
+    CATEGORY        10
+    DESCRIPTION     "Early warning of volcanic eruptions now available. _______________________________________ Using data from our planetary sciences database as well as investigations of volcanoes and magma vents here on New Terra, we have developed an early warning system that will accurately predict volcanic eruptions.  Our dual-method monitoring system uses seismometers to measure rock movement that may indicate rising magma in the planet's crust and correlation spectrometers that measure sulfur dioxide in plumes rising out of volcanic craters."
+    TEASER          "Gives early warning of volcanic eruptions. _______________________________________ Recent volcanic activity on New Terra threatens our colony.  To protect our colonists, we need to develop a method of predicting eruptions so that we can safely evacuate our colonists."
+    REQUIRES        03000
+    REQUIRES        03201
+    EDEN_COST       2400
+    PLYMOUTH_COST   1600
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH 
+
+;******************************************************************************
+; Mission 2
+;
+;This is a unit mission; no research is completed.
+;These techs only exist to give people playing on easy/medium a helping hand.
+;
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 4" 04000
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH "Temporary Lynx Speed Boost" 04001
+    CATEGORY        0
+    COST            -1
+    REQUIRES        04000
+    IMPROVE_DESC    "Increased speed"
+    UNIT_PROP LIGHT_TANK Move_Speed 2
+END_TECH
+
+BEGIN_TECH "Temporary Damage Boost" 04002
+    CATEGORY        0
+    COST            -1
+    REQUIRES        04000
+    IMPROVE_DESC    "Increased weapon damage"
+    UNIT_PROP LASER Penetration_Damage 45
+    UNIT_PROP MICROWAVE Concussion_Damage 30
+    UNIT_PROP MICROWAVE Penetration_Damage 30
+END_TECH
+
+;******************************************************************************
+; Mission 3
+;
+;At the start of this mission, these technologies are given for free:
+;05110 Rare Ore Processing               05106 Concrete Wall
+;05501 Rare Ore Smelter
+;05502 Rare Metals Storage Tanks
+;05104 Advanced Lab
+;
+;By the end of the mission, these technologies must have been researched:
+;05111 Independent Turret Power Systems
+;05201 Advanced Combat Chassis
+;05506 Directional Magnetic Fields (E)
+;05602 Rocket Propulsion (P)
+;05203 Electromagnetic Pulsing (E)
+;05507 Electromagnetic Pulsing (P)
+;05508 EMP Weapon
+;
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 5" 05000
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH "Consumerism" 05101
+    CATEGORY        9
+    DESCRIPTION     "Structure Factories may now produce Consumber Goods Factory structure kits.  _______________________________________ Our research into the psychological benefits of consumerism has led to the development of a production facility in which a variety of goods can be produced.  These items can induce a short-term increase in Morale."
+    TEASER          "Allows production of Consumer Goods Factory structure kits at the Structure Factory.  _______________________________________ Though there are a number of goods and services they can purchase, our colonists are asking for something more: items that they can enjoy during their leisure hours.  A few colonists have asked for time at our research facilities to respond to this need."
+    REQUIRES        05000
+    EDEN_COST       1000
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  6
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Robot-Assist Mechanic" 05051
+    CATEGORY        4
+    DESCRIPTION     "Structure Factories may now produce Garage structure kits.  Vehicle Factories may now produce Repair Vehicles.  _______________________________________ Robot-Assist Mechanics, installed at the Garage, are capable of doing most vehicle repairs.  A special version has been mounted on a vehicle for field repairs."
+    TEASER          "Allows production of Garage structure kits at the Structure Factory.  _______________________________________ Our cybernetics experts have proposed a new robot that can be used in repairing vehicles."
+    REQUIRES        03401
+    REQUIRES        05000
+    EDEN_COST       800
+    PLYMOUTH_COST   0
+    MAX_SCIENTISTS  8
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Robot-Assist Mechanic" 05052
+    CATEGORY        4
+    DESCRIPTION     "Structure Factories may now produce Garage structure kits.  _______________________________________ Robot-Assist Mechanics, installed at the Garage, are capable of doing most vehicle repairs."
+    TEASER          "Allows production of Garage structure kits at the Structure Factory.  _______________________________________ Our cybernetics experts have proposed a new robot that can be used in repairing vehicles."
+    REQUIRES        03401
+    REQUIRES        05000
+    EDEN_COST       0
+    PLYMOUTH_COST   800
+    MAX_SCIENTISTS  6
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Garage" 05102
+    CATEGORY        0
+    REQUIRES        05051
+    REQUIRES        05052
+    COST            0
+END_TECH
+
+BEGIN_TECH "Lab, Advanced" 05104
+    CATEGORY        0
+    REQUIRES        05000
+    COST            0
+END_TECH
+
+BEGIN_TECH "Walls, Concrete" 05106
+    CATEGORY        0
+    REQUIRES        05000
+    COST            0
+END_TECH
+
+BEGIN_TECH "Rare Ore Processing" 05110
+    CATEGORY        6
+    DESCRIPTION     "Structure Factories may now produce Rare Ore Smelter and Rare Metals Storage Tanks structure kits.  Robo-Miners may deploy as Rare Ore Mines.  Robo-Miner production cost increased.  _______________________________________ Rare Metals will be a great asset to us.  These metals can be used in several new research projects."
+    TEASER          "Allows Robo-Miners to deploy as Rare Ore Mines. Allows production of Rare Ore Smelter and Rare Metals Storage Tanks structure kits at the Structure Factory. _______________________________________ Since our arrival on New Terra, we have encountered a number of sites that are rich in rare mineral deposits, but we have had neither applications which called for Rare Metals nor methods of processing these Rare Ores.  Now, our scientists have a number of projects they wish to undertake which would require Rare Metals."
+    IMPROVE_DESC    "Can build Rare Ore Mines"
+    REQUIRES        03405
+    REQUIRES        05000
+    COST            2500
+    MAX_SCIENTISTS  16
+    LAB             3
+    UNIT_PROP MINER Common_Required 700
+END_TECH
+
+BEGIN_TECH "Independent Turret Power Systems" 05111
+    CATEGORY        4
+    DESCRIPTION     "Weapon damage increased.  _______________________________________ The R-10 cool-fusion power cell, just developed, is a small but powerful generator designed to fit into the weapons turret on our Lynx combat vehicles.  This replaces the power feeds from the Lynx' own cool-fusion plant, and makes possible other, more powerful weapons systems."
+    TEASER          "Increases weapon damage.  _______________________________________ Our weapons turrets currently feed off the Lynx cool-fusion power plant.  Because of the other demands on this power system, the amount of power that is available to the weapon is limited.  Our research project will develop an independent power source for weapons turrets."
+    IMPROVE_DESC    "Increased weapon damage"
+    REQUIRES        03402
+    REQUIRES        05000
+    COST            1700
+    MAX_SCIENTISTS  12
+    LAB             3
+    UNIT_PROP LASER Penetration_Damage 45
+    UNIT_PROP MICROWAVE Concussion_Damage 30
+    UNIT_PROP MICROWAVE Penetration_Damage 30
+END_TECH
+
+BEGIN_TECH "Legged Robots" 05116
+    CATEGORY        4
+    DESCRIPTION     "Structure Factories may now produce Arachnid Factory structure kits.  Arachnid Factories may produce Spider units.  _______________________________________ Our new 'Arachnid' robotics factory can produce robots that move on legs rather than wheels.  These smaller Spider vehicles are inexpensive and agile, and can be used to repair other vehicles and structures."
+    TEASER          "Allows production of Arachnid Factory structure kits at the Structure Factory. _______________________________________ As we move into areas with rougher terrain, our robotics staff has proposed research into robots that use legged locomotion rather than wheeled.  Robots with legs would be more agile and therefore less affected by terrain than our existing vehicles."
+    REQUIRES        03401
+    REQUIRES        03402
+    REQUIRES        05000
+    EDEN_COST       -1
+    PLYMOUTH_COST   1800
+    MAX_SCIENTISTS  14
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Advanced Combat Chassis" 05201
+    CATEGORY        4
+    DESCRIPTION     "Vehicle Factories may now produce Panthers.  _______________________________________ The Panther medium combat chassis, based on the same vehicle body as the ConVec and Cargo Truck, is a heavier, better armored defender than its predecessor, the Lynx.  Although slower than the Lynx, its greater durability in combat should improve our defenses."
+    TEASER          "Allows production of Panthers at the Vehicle Factory.  _______________________________________ While the Lynx has generally been a satisfactory design, it has proven to have a short life expectancy in combat.  Our defenses require a heavier, more durable combat chassis."
+    REQUIRES        05110
+    REQUIRES        05000
+    EDEN_COST       2200
+    PLYMOUTH_COST   2400
+    MAX_SCIENTISTS  14
+    LAB             3
+END_TECH 
+
+BEGIN_TECH "Dissipating Adhesives" 05202
+    CATEGORY        7
+    DESCRIPTION     "The StickyFoam weapon is now available.  _______________________________________ StickyFoam is a powerful adhesive foam that evaporates after a short period of time.  Our experiments to find a use for StickyFoam were largely unsuccessful, but we have developed the foam into a weapon system.  Enemy vehicles sprayed with StickyFoam will be immobilized briefly, allowing our units an opportunity to escape or bring up reinforcements."
+    TEASER          "Makes the StickyFoam weapon available.  _______________________________________ One of our researchers, experimenting during his off-duty hours, discovered a peculiar substance:  a foam that acted as a powerful adhesive, but evaporated after a short period of time.  This is such a fascinating material that we would like to run some experiments on it to find potential applications."
+    REQUIRES        03851
+    REQUIRES        05000
+    EDEN_COST       -1
+    PLYMOUTH_COST   1600
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Electromagnetic Pulsing" 05203
+    CATEGORY        7
+    DESCRIPTION     "The EMP weapon is now available.  _______________________________________ Electromagnetic pulse (EMP) grenades, fired from Guard Posts or combat chassis, produce a disruption in the power distribution circuitry of all vehicles or structures in range.  This will briefly render the target inoperable."
+    TEASER          "Makes the EMP weapon available.  _______________________________________ Since the early development of atomic weaponry, scientists have known about the disruptive effect of the electromagnetic pulse (EMP) on electronic circuitry.  Our scientists believe they can use this knowledge to produce a defensive weapons system."
+    REQUIRES        03851
+    REQUIRES        05000
+    EDEN_COST       1800
+    PLYMOUTH_COST   0
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Electromagnetic Pulsing" 05507
+    CATEGORY        7
+    DESCRIPTION     "The EMP weapon is now available.  _______________________________________ Electromagnetic pulse (EMP) grenades, fired from Guard Posts or combat chassis, produce a disruption in the power distribution circuitry of all vehicles or structures in range.  This will briefly render the target inoperable."
+    TEASER          "Makes the EMP weapon available.  _______________________________________ Since the early development of atomic weaponry, scientists have known about the disruptive effect of the electromagnetic pulse (EMP) on electronic circuitry.  Our scientists believe they can use this knowledge to produce a defensive weapons system."
+    REQUIRES        03851
+    REQUIRES        05000
+    EDEN_COST       0
+    PlYMOUTH_COST   1400
+    MAX_SCIENTISTS  11
+    LAB             3
+END_TECH
+
+BEGIN_TECH "EMP Weapon" 05508
+    CATEGORY        7
+    REQUIRES        05203
+    REQUIRES        05507
+    COST            0
+END_TECH 
+
+BEGIN_TECH  "Meteorology" 05302
+    CATEGORY        10
+    DESCRIPTION     "Early warning of electrical storms now available. _______________________________________ We now understand the atmospheric conditions that lead to filimentous, or arc, lightning discharges in the New Terran atmosphere, and can predict their occurrence.  On Earth, collisions between water particles of varying sizes caused the build-up of an electrical charge in the atmosphere.  Negatively-charged particles in storm clouds were attracted to the positively-charged ground.  The process is similar on New Terra, except that instead of water particles colliding, we have dust particles colliding."
+    TEASER          "Gives early warning of electrical storms. _______________________________________ Although there have always been electrical discharges in the New Terran atmosphere, the atmosphere's low pressure caused these discharges to be manifested as sudden glows, rather than lightning strikes as on Earth.  Now, with the thickening of the atmosphere, dangerous lightning is becoming more of a danger.  We need to study these strikes so that we can predict their occurrence and take precautions."
+    REQUIRES        05000
+    COST            1600
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH 
+
+BEGIN_TECH "DIRT Procedural Review" 05305
+    CATEGORY        11
+    DESCRIPTION     "DIRT protection capacity increased; DIRT Worker requirement increased. _______________________________________ Using suggestions made by DIRT members, our emergency response procedures have been improved.  Among the improvements are an additional team member, redesigned power-assist armor, and a new type of structural breach patch."
+    TEASER          "Increases DIRT protection capacity. _______________________________________ As our colony grows, more and more resources must be invested in DIRTs to maintain adequate protection.  DIRT members have made several suggestions that may reduce this burden.  A review of methods and procedures is in order."
+    IMPROVE_DESC    "Improved protection capacity"
+    REQUIRES        03301
+    REQUIRES        05000
+    COST            1800
+    MAX_SCIENTISTS  10
+    LAB             2
+    UNIT_PROP DIRT Production_Capacity 15
+    UNIT_PROP DIRT Workers_Required 3
+END_TECH 
+
+BEGIN_TECH "Recycler Postprocessing" 05306
+    CATEGORY        6
+    DESCRIPTION     "Metals recovered through recycling increased.  When recycling structure kits or deconstructing structures, the GORF will recover 60% of the original value of the item.  Recycled Ore Rubble increases from 50 units of Ore to 75, and Recycled Rare Ore Rubble increases from 25 to 40 units of Rare Ore."
+    TEASER          "Increases Metals recovered through recycling. _______________________________________ The hot-cracking column used in our GORFs successfully reclaims approximately 50% of the Metals content of materials.  We have some theories about a secondary process that can recover additional metals from the remaining slag."
+    IMPROVE_DESC    "Improved Metals reclamation"
+    REQUIRES        03302
+    REQUIRES        05000
+    COST            1500
+    MAX_SCIENTISTS  10
+    LAB             2
+    UNIT_PROP GORF Improved 1
+END_TECH 
+
+BEGIN_TECH "Automated Diagnostic Examinations" 05307
+    CATEGORY        11
+    DESCRIPTION     "Medical Center capacity improved. _______________________________________ A new type of robotic medical assistant has been developed which can perform many routine tasks at the Medical Center, allowing the staff to care for more patients."
+    TEASER          "Increases Medical Center capacity. _______________________________________ The increase in our population is straining the capacity of our Medical Centers.  We may be able to increase their capacity by automating some tasks."
+    IMPROVE_DESC    "Increased Colonist capacity"
+    REQUIRES        03303
+    REQUIRES        05000
+    COST            1500
+    MAX_SCIENTISTS  8
+    LAB             2
+    UNIT_PROP MED_CENTER Production_Capacity 75
+END_TECH 
+
+BEGIN_TECH "Hypnopaedia" 05309
+    CATEGORY        9
+    DESCRIPTION     "Scientist training time reduced. _______________________________________  Our hypnopaedia project has borne limited fruits.  Sleep-learning is useful only in reducing the time required for memorization.  This is helpful in that a large part of our research training requires knowledge of what types of research are described in our scientific databases."
+    TEASER          "Reduces Scientist training time. _______________________________________  As our research projects become more complex, we need to improve our methods of training scientists.  Hypnopaedia, or sleep-learning, is a method we plan to investigate."
+    IMPROVE_DESC    "Reduced training time"
+    REQUIRES        03305
+    REQUIRES        05000
+    EDEN_COST       800
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  10
+    LAB             2
+    UNIT_PROP UNIVERSITY Storage_Capacity 3750
+END_TECH 
+
+BEGIN_TECH "Hypnopaedia" 05310
+    CATEGORY        9
+    DESCRIPTION     "Scientist training time reduced. _______________________________________  Our hypnopaedia project has borne limited fruits.  Sleep-learning is useful only in reducing the time required for memorization.  This is helpful in that a large part of our research training requires knowledge of what types of research are described in our scientific databases."
+    TEASER          "Reduces Scientist training time. _______________________________________  As our research projects become more complex, we need to improve our methods of training scientists.  Hypnopaedia, or sleep-learning, is a method we plan to investigate."
+    IMPROVE_DESC    "Reduced training time"
+    REQUIRES        03305
+    REQUIRES        05000
+    EDEN_COST       -1
+    PLYMOUTH_COST   1000
+    MAX_SCIENTISTS  10
+    LAB             2
+    UNIT_PROP UNIVERSITY Storage_Capacity 4500
+END_TECH 
+
+BEGIN_TECH "Reinforced Vehicle Construction" 05317
+    CATEGORY        4
+    DESCRIPTION     "Cargo Truck, ConVec, and Evacuation Transport Hit Points increased; production costs of these vehicles have changed. _______________________________________  The durability of these vehicles has been improved through a combination of revised construction and the use of a composite alloy incorporating Rare Metals."
+    TEASER          "Increases Hit Points of Cargo Trucks, ConVecs, and Evacuation Transports. _______________________________________  The Cargo Truck, and some similar vehicles, have shown themselves to be all too vulnerable to damage from disasters, explosions, and attacks.  Through the use of new composite alloys incorporating Rare Metals, we can increase their durability."
+    IMPROVE_DESC    "Increased Hit Points"
+    REQUIRES        05110
+    COST            1200
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP CON_TRUCK Hit_Points 375
+    UNIT_PROP CON_TRUCK Common_Required 1000
+    UNIT_PROP CON_TRUCK Rare_Required 150
+    UNIT_PROP BIG_TRUCK Hit_Points 750
+    UNIT_PROP BIG_TRUCK Common_Required 500
+    UNIT_PROP BIG_TRUCK Rare_Required 100
+    UNIT_PROP MOBILE_HOME Hit_Points 280
+    UNIT_PROP MOBILE_HOME Common_Required 650
+    UNIT_PROP MOBILE_HOME Rare_Required 100
+END_TECH
+
+BEGIN_TECH "Robotic Image Processing" 05318
+    CATEGORY        4
+    DESCRIPTION     "Light Tower, Guard Post, and Scout sight ranges improved. _______________________________________ Through a combination of improved image processing software and increased zoom telescoping vision systems, the visual recognition range of certain units has been improved."
+    TEASER          "Improves Light Tower, Guard Post, and Scout sight ranges. _______________________________________ The visual recognition systems of our robotic vehicles have a limited useful range, partially due to the limitations of the image processing software.  Some of our programmers have a possible solution."
+    IMPROVE_DESC    "Improved sight range"
+    REQUIRES        05000
+    REQUIRES        03401
+    EDEN_COST       1400
+    PLYMOUTH_COST   1600
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP TOWER_LIGHT Sight_Range 9
+    UNIT_PROP TOWER_GUARD Sight_Range 9
+    UNIT_PROP SCOUT Sight_Range 8
+END_TECH 
+
+BEGIN_TECH "Repair vehicle" 05401
+    CATEGORY        0
+    REQUIRES        05102
+    EDEN_COST       0
+    PLYMOUTH_COST   -1
+END_TECH 
+
+BEGIN_TECH "Smelter, Rare Ore construction" 05501
+    CATEGORY        0
+    REQUIRES        05110
+    COST            0
+END_TECH 
+
+BEGIN_TECH "Storage Tanks, Rare Metals" 05502
+    CATEGORY        0
+    REQUIRES        05110
+    COST            0
+END_TECH 
+
+BEGIN_TECH "Directional Magnetic Fields" 05506
+    CATEGORY        7
+    DESCRIPTION     "The Rail Gun weapon is now available.  _______________________________________ The Rail Gun turret uses an electric current to accelerate a projectile to velocities of several hundred meters per second. The weapon consists of two copper rails and the R-10 cool-fusion power cell, which charges a capacitor.  The capacitor is discharged into one rail and the current flows through the projectile into the second rail, producing a directional magnetic field that accelerates the projectile."
+    TEASER          "Makes the Rail Gun weapon available. _______________________________________ Some of our researchers, reviewing the military database brought from Earth, have found an abstract of a proposal for a weapon that uses a directional magnetic field to propel a projectile.  Although plans for the weapon were lost, we believe we can recreate such a device."
+    REQUIRES        05111
+    REQUIRES        05201
+    EDEN_COST       2000
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  14
+    LAB             3
+END_TECH 
+
+BEGIN_TECH "Heat Dissipation Systems" 05601
+    CATEGORY        7
+    DESCRIPTION     "Microwave rate of fire increased. _______________________________________  Our new weapons turret heat sinks allow the Microwave to be fired more quickly.  The heat sinks use dichlorodifluoromethane gas as a coolant to prevent weapon overheating."
+    TEASER          "Increases Microwave rate of fire. _______________________________________  Our Microwave weapon systems generate high levels of heat when repeatedly fired in combat, requiring a cooling-off period before they can be fired again.  This delay could be shortened by adding a heat dissipation system."
+    IMPROVE_DESC    "Increased rate of fire"
+    REQUIRES        03603
+    REQUIRES        05000
+    EDEN_COST       -1
+    PLYMOUTH_COST   3500
+    MAX_SCIENTISTS  14
+    LAB             3
+    UNIT_PROP MICROWAVE Rate_Of_Fire 20
+END_TECH
+
+BEGIN_TECH "Rocket Propulsion" 05602
+    CATEGORY        7
+    DESCRIPTION     "The RPG weapon is now available.  _______________________________________  Our project has prepared the way for the development of a launch facility.  As a side benefit, we have used this technology to produce a new defensive system, using Rocket Propelled Grenades (RPGs) to deliver an explosive charge."
+    TEASER          "Makes the RPG weapon available.  _______________________________________ As it begins to appear that the microbe Eden has released will eventually make New Terra uninhabitable, we must begin looking for ways to evacuate the planet.  The first step in developing launch capabilities is a research project in rocket propulsion."
+    REQUIRES        05111
+    REQUIRES        05201
+    EDEN_COST       -1
+    PLYMOUTH_COST   2000
+    MAX_SCIENTISTS  12
+    LAB             3
+END_TECH
+
+;******************************************************************************
+; Mission 4
+;
+;By the end of the mission, these technologies must have been researched:
+;07102 Explosive Charges
+;06115 Geothermal Power (E)
+;06107 Magnetohydrodynamics (P)
+;07206 Scout-class Drive Train Refit
+;06405 Space Program 
+;08601 Skydock
+;08801 Ion Drive Module
+;08901 Fusion Drive Module
+;08951 Fueling Systems
+;10202 Command Module
+;10205 Habitat Ring
+;
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 6" 06000
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+; Unresearchable tech - given by mission script to allow Ion Drive Module research
+BEGIN_TECH "Enable Ion Drive Module" 08001
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        06000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+; Unresearchable tech - given by mission script to allow Fusion Drive Module research
+BEGIN_TECH "Enable Fusion Drive Module" 08002
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        06000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+; Unresearchable tech - given by mission script to allow Fueling Systems research
+BEGIN_TECH "Enable Fueling Systems" 08003
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        06000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+; Unresearchable tech - given by mission script to allow Command Module research
+BEGIN_TECH "Enable Command Module" 08004
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        06000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+; Unresearchable tech - given by mission script to allow Habitat Ring research
+BEGIN_TECH "Enable Habitat Ring" 08005
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        06000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+BEGIN_TECH  "Magnetohydrodynamics" 06107
+    CATEGORY        3
+    DESCRIPTION     "Structure Factories may now produce MHD Generator structure kits.  _______________________________________ Our studies of New Terra's shifting magnetic field have produced a serendipitous side benefit.  We have discovered a way to harness the shifts through electromagnetic induction, producing a substantial amount of electrical power."
+    TEASER          "Allows production of MHD Generator structure kits at the Structure Factory.  _______________________________________ For several years now, New Terra's magnetic field has been in a state of flux.  This appears to be a natural process; it is believed to have happened a number of times in Earth's past, though not during recorded history.  This is a fascinating opportunity to study a rare geologic phenomenon."
+    REQUIRES        05110
+    REQUIRES        06000
+    EDEN_COST       -1
+    PLYMOUTH_COST   2200
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH
+
+BEGIN_TECH "MHD Generator" 05107
+    CATEGORY        0
+    REQUIRES        06107
+    COST            0
+END_TECH
+
+BEGIN_TECH "Geothermal Power" 06115
+    CATEGORY        3
+    DESCRIPTION     "Vehicle Factories may now produce Geothermal Constructors (GeoCons).  _______________________________________ Although New Terra does not have ground water, and therefore does not generate underground steam and hot water that produced power on Earth, the fumaroles in this area do contain molten salts and gasses that can be used similarly.  The Geothermal Plant is a less expensive and more stable power generation facility than our current Tokamak plant."
+    TEASER          "Allows production of Geothermal Constructors (GeoCons) at the Vehicle Factory.  _______________________________________ On Earth, a significant percentage of electric power was generated by geothermal power plants.  Although New Terra does not have ground water like Earth, and therefore cannot have the same kind of steam generation that Earth's geothermal plants had, recent volcanic activity indicates a great deal of underground heat that we may be able to tap into to produce power."
+    REQUIRES        03402
+    REQUIRES        05110
+    EDEN_COST       2200
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  14
+    LAB             2
+END_TECH 
+
+BEGIN_TECH "GeoCon" 05115
+    CATEGORY        0
+    REQUIRES        06115
+    COST            0
+END_TECH
+
+BEGIN_TECH "Space Program" 06405
+    CATEGORY        8
+    DESCRIPTION     "Structure Factories may now produce Spaceport structure kits.  Spaceports may produce Single Use Launch Vehicle (SULV) and EDWARD satellite.  _______________________________________ Our space program is underway.  As an initial cargo, we have developed the Early Disaster Warning and Resource Detection (EDWARD) satellite."
+    TEASER          "Allows production of Spaceport structure kits at the Structure Factory. _______________________________________ Due to the threat posed by the Blight, we have decided to begin construction of a new starship as a contingency.  We must develop a space launch facility as the first step in our plan to evacuate New Terra."
+    REQUIRES        05110
+    REQUIRES        06000
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH 
+
+BEGIN_TECH "Spaceport" 05405
+    CATEGORY        0
+    REQUIRES        06405
+    COST            0
+END_TECH
+
+BEGIN_TECH "SULV" 05503
+    CATEGORY        0
+    REQUIRES        06405
+    COST            0
+END_TECH
+
+BEGIN_TECH "EDWARD satellite" 05504
+    CATEGORY        0
+    REQUIRES        06405
+    COST            0
+END_TECH 
+
+BEGIN_TECH "Skydock" 08601
+    CATEGORY        8
+    DESCRIPTION     "Spaceports may now produce the Skydock. _______________________________________ Our Skydock will function as an orbital command post.  In addition to docking facilities for our launch vehicles ferrying components and technicians, it serves as a command and control facility for construction of our evacuation starship."
+    TEASER          "Allows production of the Skydock at the Spaceport. _______________________________________ We must begin construction of an evacuation starship as soon as possible.  The first step is an orbital station from which we can start deploying components of the ship."
+    REQUIRES        06000
+    REQUIRES        06405
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Ion Drive Module" 08801
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Ion Drive Module. _______________________________________ The ion motor used in the 'Conestoga' was a low-thrust/long-duration system activated once the ship reached interstellar space.  The Ion Drive Module contains this interstellar drive as well as supplemental ion and chemical guidance thrusters to be attached to the starship."
+    TEASER          "Allows production of the Ion Drive Module at the Spaceport. _______________________________________ While the main drive of the 'Conestoga' was a less capable fusion drive, it appears that an improved ion propulsion system was developed shortly before launch and used in some thruster systems.  The remains of one of these thrusters has been recovered from the 'Conestoga' crash site.  Reverse-engineering this thruster will be a substantial step in developing our evacuation starship."
+    REQUIRES        08001
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Fusion Drive Module" 08901
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Fusion Drive Module. _______________________________________ Our fusion propulsion system plans are complete.  The Fusion Drive Module contains both the fusion motor, used for high-acceleration in-system maneuvering, and the tanks which store the hydrogen fuel used in this motor.  Once we have reached interstellar space, this fusion motor will convert into a fusion reactor that will provide power to the Ion Drive."
+    TEASER          "Allows production of the Fusion Drive Module at the Spaceport. _______________________________________ Some of the wreckage recovered from the starship crash site appears to be part of a fusion motor propulsion system.  Further examination of the wreckage will allow us to re-build such a system."
+    REQUIRES        08002
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Fueling Systems" 08951
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Fueling Systems. _______________________________________ The Fueling Systems consist of storage tanks for liquid mercury, used to fuel the Ion Drive, and the Fuel Shark, an autonomous ramscoop vehicle that dives into the outer layers of the planet's atmosphere to gather hydrogen fuel for the Fusion Drive.  The Fuel Shark will substantially reduce the number of launches necessary to prepare the starship for flight."
+    TEASER          "Allows production of the Fueling Systems at the Spaceport. _______________________________________ Portions of a severely-damaged spacecraft were among the wreckage found at the 'Conestoga' crash site.  The ship was known to have carried an emergency refueling unit, designed to scoop hydrogen from the atmosphere of gas giants similar to Jupiter.  Should New Terra have been found to be uninhabitable, this 'Fuel Shark' would have been able to refuel the 'Conestoga' for travel to another star."
+    REQUIRES        08003
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Command Module" 10202
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Command Module. _______________________________________ Several dozen Savant computer systems, working in parallel, make up the core of the Command Module.  This is the most sophisticated computer system we have ever devised, capable of guidance control, power direction, and self-maintenance, without human intervention, for decades."
+    TEASER          "Allows production of the Command Module at the Spaceport. _______________________________________ Wreckage from the second 'Conestoga' crash site included a remarkably intact section of the ship's command deck.  This will speed our development of the command and control systems of the ship."
+    REQUIRES        08004
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Habitat Ring" 10205
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Habitat Ring. _______________________________________ Before and after our interstellar flight, our colonists will live in the Habitat Ring.  These temporary quarters are shielded from radiation and small particle collisions by a magnetic field generated by superconductive coils built into the hull."
+    TEASER          "Allows production of the Habitat Ring at the Spaceport. _______________________________________ Two of the recovered fragments of the 'Conestoga' are from the hull of the habitat ring.  They contain large superconductive magnetic coils, which appear to be a kind of radiation shielding system."
+    REQUIRES        08005
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Explosive Charges" 07102
+    CATEGORY        7
+    DESCRIPTION     "The Starflare weapon is now available.  _______________________________________ The Starflare turret is a large trinitrotoluene (TNT) bomb, which may be placed on the Lynx or Panther combat chassis, or installed into a Guard Post.  This high-explosive will damage all units within range."
+    TEASER          "Makes the Starflare weapon available.  _______________________________________ A simple and inexpensive weapons system could be developed by placing high explosive charges into a weapons turret.  Although the vehicle would be destroyed by the detonation, the size of the charge could quickly incapacitate several enemy units at once."
+    REQUIRES        06000
+    REQUIRES        03851
+    EDEN_COST       900
+    PLYMOUTH_COST   1100
+    MAX_SCIENTISTS  11
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Rare Ore Extraction" 07201
+    CATEGORY        6
+    DESCRIPTION     "Rare Ore Mine yield increased.  _______________________________________ Our project has met with limited success.  We have developed two new processes that determine the Rare Metal content of certain gangue materials, such as quartz, and eliminate specimens containing only trace amounts of Metal."
+    TEASER          "Increases Rare Ore Mine yield.  _______________________________________ Our Rare Ore mining facilities have had only moderate success at finding the best methods of extracting higher grades of Rare Ore.  Several proposals have been put forward to improve our efficiency."
+    IMPROVE_DESC    "Improved Rare Ore yield"
+    REQUIRES        06000
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP MINE_ADV Improved 1
+END_TECH
+
+BEGIN_TECH "Hot-Cracking Column Efficiency" 07202
+    CATEGORY        6
+    DESCRIPTION     "Common Ore Smelter, Rare Ore Smelter, and GORF Power requirement reduced."
+    TEASER          "Reduces Common Ore Smelter, Rare Ore Smelter, and GORF Power requirements. _______________________________________ Smelters and GORFs are dependent on hot cracking columns to separate the Metal content of Ores or rubble.  This equipment has a very high Power demand.  We believe that we may be able to apply our high-temperature superconductive material to some elements of this system and reduce the Power demand."
+    IMPROVE_DESC    "Reduced Power demand"
+    REQUIRES        06000
+    COST            1400
+    MAX_SCIENTISTS  14
+    LAB             2
+    UNIT_PROP SMELTER_ADV Power_Required 40
+    UNIT_PROP SMELTER Power_Required 40
+    UNIT_PROP GORF Power_Required 40
+END_TECH
+
+BEGIN_TECH "Scout-class Drive Train Refit" 07206
+    CATEGORY        4
+    DESCRIPTION     "Scout, Robo-Surveyor, and Lynx speeds improved. _______________________________________ The G-75 drive train used in these three vehicles has been replaced by the G-80 model, which improved vehicle speed through a more efficient transfer of energy from the power plant to the wheels."
+    TEASER          "Increases Scout, Robo-Surveyor, and Lynx speeds. _______________________________________ The Scout, and some similar vehicles, use the G-75 drive train.  We have discovered a design flaw in the G-75 that impairs its efficiency.  This project would redesign the G-75 to make it more effective."
+    IMPROVE_DESC    "Increased speed"
+    REQUIRES        06000
+    EDEN_COST       1500
+    PLYMOUTH_COST   1800
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP LIGHT_TANK Move_Speed 2
+    UNIT_PROP SURVEYOR Move_Speed 3
+    UNIT_PROP SCOUT Move_Speed 1
+END_TECH
+
+BEGIN_TECH "Advanced Robotic Manipulator Arm" 07213
+    CATEGORY        4
+    DESCRIPTION     "ConVec, Earthworker, Robo-Dozer, Repair Vehicle, and Garage productivity improved.  _______________________________________  Several small refinements to the manipulator arms of these units, such as reconfigured joints, use of higher tensile strength metals in construction, and a software upgrade, add up to a substantial improvement in the production and repair rates of these units."
+    TEASER          "Improves ConVec, Earthworker, Robo-Dozer, Repair Vehicle, and Garage productivity.  _______________________________________  Certain units, such as the ConVec, use manipulator arms to accomplish complex tasks.  Our cybernetic experts have a proposal for improving the flexibility and strength of these manipulator arms."
+    IMPROVE_DESC    "Improved productivity"
+    REQUIRES        05102
+    REQUIRES        06000
+    EDEN_COST       2800
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  16
+    LAB             2
+    UNIT_PROP REPAIR_TRUCK Production_Rate 96
+    UNIT_PROP CON_TRUCK Production_Rate 96
+    UNIT_PROP WALL_TRUCK Production_Rate 96
+    UNIT_PROP BULL_DOZER Production_Rate 96
+    UNIT_PROP GARAGE Production_Capacity 96
+END_TECH
+
+BEGIN_TECH "Advanced Robotic Manipulator Arm" 07214
+    CATEGORY        4
+    DESCRIPTION     "ConVec, Earthworker, Robo-Dozer, and Garage productivity improved.  _______________________________________  Several small refinements to the manipulator arms of these units, such as reconfigured joints, use of higher tensile strength metals in construction, and a software upgrade, add up to a substantial improvement in the production and repair rates of these units."
+    TEASER          "Improves ConVec, Earthworker, Robo-Dozer, and Garage productivity.  _______________________________________  Certain units, such as the ConVec, use manipulator arms to accomplish complex tasks.  Our cybernetic experts have a proposal for improving the flexibility and strength of these manipulator arms."
+    IMPROVE_DESC    "Improved productivity"
+    REQUIRES        05102
+    REQUIRES        06000
+    EDEN_COST       -1
+    PLYMOUTH_COST   3200
+    MAX_SCIENTISTS  14
+    LAB             2
+    UNIT_PROP CON_TRUCK Production_Rate 96
+    UNIT_PROP WALL_TRUCK Production_Rate 96
+    UNIT_PROP BULL_DOZER Production_Rate 96
+    UNIT_PROP GARAGE Production_Capacity 96
+END_TECH
+
+BEGIN_TECH "Increased Capacitance Circuitry" 07403
+    CATEGORY        7
+    DESCRIPTION     "Rail Gun damage and range increased. _______________________________________  The new design of the dielectric insulator has increased the capacitance of the capacitors used in the Rail Gun weapon systems.  The higher discharge increases the acceleration of the projectile by 20%.  In addition, our researchers are brainstorming another possible use for this technology, and will soon submit a new project proposal."
+    TEASER          "Increases Rail Gun damage and range. _______________________________________  As our experience in using Rare Metals grows, we find new applications for these materials.  Our boptronics engineers believe they can refine the design of the dielectric insulators used in some of our high-voltage capacitors to improve their efficiency."
+    IMPROVE_DESC    "Increased weapon damage"
+    REQUIRES        06000
+    REQUIRES        05506
+    COST            1800
+    MAX_SCIENTISTS  10
+    LAB             3
+    UNIT_PROP RAIL_GUN Concussion_Damage 120
+    UNIT_PROP RAIL_GUN Penetration_Damage 60
+    UNIT_PROP RAIL_GUN Sight_Range 7
+END_TECH
+
+BEGIN_TECH "Expanded Housing" 08104
+    CATEGORY        9
+    DESCRIPTION     "Structure Factories may now produce Advanced Residence structure kits. _______________________________________ The new Advanced Residence structure provides our colonists with larger, more spacious quarters, yet reduces administrative and maintenance difficulties and has only a slightly higher cost."
+    TEASER          "Allows production of Advanced Residence structure kits at the Structure Factory. _______________________________________ As our population has grown, so has the number of Residence structures we need to house our people, making the colony more difficult to manage.  A larger Residence facility, serving more colonists, would reduce some of our administrative problems."
+    REQUIRES        03406
+    REQUIRES        06000
+    EDEN_COST       1600
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Disaster-Resistant Housing" 08105
+    CATEGORY        9
+    DESCRIPTION     "Structure Factories may now produce Reinforced Residence structure kits.  _______________________________________ Rather than alter the existing Residence plan, we have designed a new Reinforced Residence, capable of withstanding more serious disaster.  The original Residence structure is still available, at lower cost, for use in areas deemed to be less prone to seismic activity."
+    TEASER          "Allows production of the Reinforced Residence structure kit at the Structure Factory. _______________________________________ he increasing frequency and strength of the seismic events and atmospheric disturbances are making our Residence structures dangerous places to be.  This project will seek to alter the design of the Residence to make it more able to withstand these dangers."
+    REQUIRES        03406
+    REQUIRES        06000
+    EDEN_COST       -1
+    PLYMOUTH_COST   600
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Arachnid Weaponry" 07104
+    CATEGORY        7
+    DESCRIPTION     "Arachnid Factories may now produce Scorpions.  _______________________________________ The Scorpion, armed with a specially-adapted Microwave weapon, is a low-cost, high-mobility combat unit.  Groups of Scorpions can quickly overwhelm enemy units."
+    TEASER          "Allows production of Scorpions at the Arachnid Factory.  _______________________________________ The speed and low cost of the Spiders has led some of our Scientists to suggest that we build a second Arachnid model incorporating a weapon system."
+    REQUIRES        03603
+    REQUIRES        05116
+    REQUIRES        06000
+    EDEN_COST       -1
+    PLYMOUTH_COST   1800
+    MAX_SCIENTISTS  12
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Enhanced Defensive Fortifications" 08306
+    CATEGORY        2
+    DESCRIPTION     "Guard Posts armor upgraded.  _______________________________________  The armor applied to our Guard Posts is now equal to that protecting our most vital structures."
+    TEASER          "Upgrades Guard Posts armor.  _______________________________________  With tensions increasing between the two colonies, we must make our defenses as strong as possible, especially as we begin development of our starship."
+    IMPROVE_DESC    "Improved armor"
+    REQUIRES        06000
+    EDEN_COST       1600
+    PLYMOUTH_COST   1800
+    MAX_SCIENTISTS  12
+    LAB             2
+    UNIT_PROP TOWER_GUARD Armor 5
+END_TECH
+
+;******************************************************************************
+;Tech Level 7 / Mission 7
+;
+;No research can be completed during this mission.
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 7" 07000
+    CATEGORY        0
+    COST            0
+END_TECH
+
+;******************************************************************************
+;Tech Level 8 / Mission 8
+;
+;At the end of this mission, these topics must have been completed:
+;00000                                   00000          
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 8" 08000
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH  "Severe Atmospheric Disturbances" 05303
+    CATEGORY        10
+    DESCRIPTION     "Early warning of vortexes now available. _______________________________________ The vortexes start in a manner similar to the 'dust-devils' common on Earth and Mars.  Ground-level air, heated by sunlight, rises.  Cooler air rushes into the area that the warmer air has left, but from there, the spinning column of air is enhanced and focused by a yet-unknown process which may be electromagnetic in nature.  While our understanding is limited, we can now forecast conditions that will lead to their formation, and have developed technologies for early detection."
+    TEASER          "Gives early warning of vortexes. _______________________________________ The vortexes we have been experiencing are a new phenomenon on New Terra; we must study these severe storms to determine how they are caused and how to predict them."
+    REQUIRES        08000
+    COST            1600
+    MAX_SCIENTISTS  10
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Smelter Postprocessing" 07203
+    CATEGORY        6
+    DESCRIPTION     "Common Ore Smelter and Rare Ore Smelter production increased.  _______________________________________ We have successfully adapted the chemical postprocessing treatment used at the GORF to improve the yield of our Smelters."
+    TEASER          "Increases Common Ore Smelter and Rare Ore Smelter production.  _______________________________________ The chemical postprocessing technique we developed for improving metals reclamation at the GORF may be adaptable for use at our Common Ore and Rare Ore Smelters."
+    IMPROVE_DESC    "Increased ore yield"
+    REQUIRES        05306
+    REQUIRES        08000
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP SMELTER Improved 1
+    UNIT_PROP SMELTER_ADV Improved 1
+END_TECH 
+
+BEGIN_TECH "Meteor-Watch Observatory" 08051
+    CATEGORY        8
+    DESCRIPTION     "Structure Factories may now produce Observatory structure kits. _______________________________________ Deployment of the Observatory structure will allow us at least a minimal amount of warning of meteorite impacts in the area of our colony.  The Observatory incorporates a wide-field optical telescope with a sophisticated tracking system to allow us to project the path of incoming meteors."
+    TEASER          "Allows production of Observatory structure kits at the Structure Factory. _______________________________________ After the recent meteorite impacts, our observations have found that more are to come.  New Terra is entering a field of debris, probably caused by the collision of two asteroids.  We need a way to track this debris so we can have some advance warning of meteorite impacts."
+    REQUIRES        08000
+    COST            1800
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Magma Refining" 08103
+    CATEGORY        6
+    DESCRIPTION     "Robo-Miners may now deploy as Magma Wells.  Robo-Miner production cost increased.  _______________________________________ Using the same basic configuration as our Mines, we have created a process of extracting and cooling magma from magma vents.  The product of this process is a steady supply of Rare Ores, with a constant yield of 100 units of Rare Metals."
+    TEASER          "Allows Robo-Miners to deploy as Magma Wells. _______________________________________ Initial observations of the magma vents that have begun to appear on the New Terran surface indicate that the magma is rich in Rare Metals.  If we could develop a method of safely using this magma, it would greatly increase our supply of this resource."
+    IMPROVE_DESC    "Can build Magma Wells"
+    REQUIRES        08000
+    COST            3200
+    MAX_SCIENTISTS  16
+    LAB             3
+    UNIT_PROP MINER Common_Required 800
+END_TECH
+
+BEGIN_TECH "High-Energy Ray-Composite Projector" 08106
+    CATEGORY        10
+    DESCRIPTION     "Structure Factories may now produce Meteor Defense structure kits. _______________________________________ The High-Energy Ray-Composite (HERC) Projector is now functional.  Although the equipment needed to produce this energy/particle beam is far too massive for use in a weapons turret, it is ideal for use as a meteor defense.  Using the tracking capabilities of the Observatory, the HERC beam can destroy even the largest meteors with a single shot---if it hits its target."
+    TEASER          "Allows production of Meteor Defense structure kits at the Structure Factory. _______________________________________ Some very ambitious high-energy physicists have submitted a proposal for an energy weapon.  Their theory combines both microwave and laser projection with a particle beam projector."
+    REQUIRES        08051
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Dual-Turret Weapons Systems" 08201
+    CATEGORY        4
+    DESCRIPTION     "Vehicle Factories may now produce Tigers.  _______________________________________ The dual-turret weapons systems are capable of twice the effective rate-of-fire of their single-turret predecessors, but duplicate only 70% of the components, sharing certain support systems.  Due to their size, they can only be mounted on the Tiger heavy combat chassis, a tracked vehicle based on the Earthworker and Robo-Dozer designs."
+    TEASER          "Allows production of Tigers at the Vehicle Factory.  _______________________________________ One of our research Scientists has proposed doubling the rate of fire of our combat units by installing a dual weapons turret.  This may be just the decisive advantage we need to end this destructive conflict."
+    REQUIRES        05317
+    REQUIRES        08000
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Efficiency Engineering" 08301
+    CATEGORY        2
+    DESCRIPTION     "Production time at all factories reduced. _______________________________________ Using time-and-motion analysis of the various production facilities, our researchers developed several new tools and techniques that reduced the production time of all products."
+    TEASER          "Reduces production time at all factories. _______________________________________ All of our factories use a similar assembly-line method of production.  Some of our factory workers, reading through the databases of industrial engineering techniques from Earth, have proposed a study of our factories, to look for possible increases in manufacturing efficiency."
+    IMPROVE_DESC    "Improved production rate"
+    REQUIRES        05101
+    REQUIRES        08000
+    EDEN_COST       4000
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  16
+    LAB             2
+    UNIT_PROP FACT_LUXURY Production_Capacity 96
+    UNIT_PROP FACT_STRUCTURE Production_Capacity 96
+    UNIT_PROP FACT_VEHICLE Production_Capacity 96
+    UNIT_PROP SPACEPORT Production_Capacity 96
+END_TECH
+
+BEGIN_TECH "Efficiency Engineering" 08302
+    CATEGORY        2
+    DESCRIPTION     "Production time at all factories reduced. _______________________________________ Using time-and-motion analysis of the various production facilities, our researchers developed several new tools and techniques that reduced the production time of all products by 25%"
+    TEASER          "Reduces production time at all factories. _______________________________________ All of our factories use a similar assembly-line method of production.  Some of our factory workers, reading through the databases of industrial engineering techniques from Earth, have proposed a study of our factories, to look for possible increases in manufacturing efficiency."
+    IMPROVE_DESC    "Improved production rate"
+    REQUIRES        05116
+    REQUIRES        05405
+    EDEN_COST       -1
+    PLYMOUTH_COST   4000
+    MAX_SCIENTISTS  18
+    LAB             2
+    UNIT_PROP FACT_ANDROID Production_Capacity 96
+    UNIT_PROP FACT_STRUCTURE Production_Capacity 96
+    UNIT_PROP FACT_VEHICLE Production_Capacity 96
+    UNIT_PROP SPACEPORT Production_Capacity 96
+END_TECH
+
+
+BEGIN_TECH "Heat Mining" 08304
+    CATEGORY        3
+    DESCRIPTION     "Geothermal Plant Power output increased.  _______________________________________ Our Heat Mining project has met with limited success.  We have not been able to develop a viable geothermal plant that can be deployed away from fumaroles, but by injecting cold water into the fumarole, we have been able to increase the output of our Geothermal plants."
+    TEASER          "Increases Geothermal Plant Power output.  _______________________________________ Our Geothermal Plants rely on the molten salts and gasses found in fumaroles to generate power.  Heat Mining, or Hot Dry Rock geothermal power generation, may allow us to place Geothermal Plants in places without fumaroles by injecting cold water into deep bore wells, then capturing the steam produced when the water reaches the hot rocks in the New Terran surface."
+    IMPROVE_DESC    "Increased Power output"
+    REQUIRES        06115
+    REQUIRES        08000
+    COST            1600
+    MAX_SCIENTISTS  10
+    LAB             2
+    UNIT_PROP GEOTHERMAL Production_Capacity 650
+END_TECH
+
+BEGIN_TECH "Reinforced Panther Construction" 08309
+    CATEGORY        4
+    DESCRIPTION     "Panther Hit Points increased; Panther production costs changed.  _______________________________________  A redesign of the Panther using a new composite alloy has increased the durability of this combat chassis."
+    TEASER          "Increases Panther Hit Points. _______________________________________  The composite alloy developed in our Reinforced Vehicle Construction project may be beneficial for our Panther combat chassis as well."
+    IMPROVE_DESC    "Increased hit points"
+    REQUIRES        05317
+    REQUIRES        08000
+    COST            1600
+    MAX_SCIENTISTS  12
+    LAB             3
+    UNIT_PROP MED_TANK Hit_Points 700
+    UNIT_PROP MED_TANK Common_Required 300
+    UNIT_PROP MED_TANK Rare_Required 150
+END_TECH
+
+BEGIN_TECH "Meteor detection" 08317
+    CATEGORY        0
+    REQUIRES        08051
+    COST            0
+END_TECH
+
+BEGIN_TECH "Blight-Resistant Isotopes" 08401
+    CATEGORY        2
+    DESCRIPTION     "Earthworkers may now deploy Microbe Walls. _______________________________________  We have isolated the particular isotope that affects the Blight.  Unfortunately, the isotope has a short half-life, and is difficult to produce in large quantities.  However, we have modified the Earthworker to build temporary barriers against the Blight.  These barriers will not permanently destroy the microbe, but may buy us extra time for evacuations."
+    TEASER          "Allows Earthworkers to deploy Microbe Walls. _______________________________________  During a recent evacuation, a minor accident at a Tokamak revealed a potential method of dealing with the Blight.  Destabilized by an earthquake, the Tokamak exploded and released an unusual waste product--an isotope that seemed to retard the growth of the Blight!"
+    REQUIRES        03303
+    REQUIRES        08000
+    COST            2000
+    MAX_SCIENTISTS  14
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Acid Weaponry" 08503
+    CATEGORY        7
+    DESCRIPTION     "The Acid Cloud weapon is now available.  _______________________________________ Our Acid Cloud turrets fire a projectile which releases a cloud of corrosive acid that can eat through even the toughest armor.  The cloud dissolves after a brief period, but any target caught within the cloud will take heavy damage."
+    TEASER          "Makes the Acid Cloud weapon available.  _______________________________________ Our Common Ore Smelters produce a number of toxic byproducts during the processing of Common Ore into Common Metals.  We believe we can use these wastes in a new weapons system."
+    REQUIRES        08103
+    COST            3500
+    MAX_SCIENTISTS  16
+    LAB             3
+END_TECH
+
+;******************************************************************************
+;Tech Level 9 / Mission 9
+;******************************************************************************
+
+BEGIN_TECH "09000 Tech Level 9" 09000
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+;******************************************************************************
+;Tech Level 10 / Mission 10
+;******************************************************************************
+
+BEGIN_TECH "10000 Tech Level 10" 10000
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH "Extended-Range Projectile Launcher" 07212
+    CATEGORY        7
+    DESCRIPTION     "EMP and Acid Cloud ranges increased. _______________________________________  The redesigned launch mechanism used in both of these weapons has lengthened the maximum range of these weapons."
+    TEASER          "Increases EMP and Acid Cloud ranges. _______________________________________  Our after-action equipment performance reports show a weakness in the launch mechanism used in our EMP and Acid Cloud weapons turrets.  Though this weakness does not cause an equipment failure, our engineers would like to revisit the design of this launcher."
+    REQUIRES        05508
+    REQUIRES        08503
+    REQUIRES        10000
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP ACID Sight_Range 7
+    UNIT_PROP EMP Sight_Range 7
+END_TECH
+
+BEGIN_TECH "Artificial Lightning" 10102
+    CATEGORY        7
+    DESCRIPTION     "The Thor's Hammer weapon is now available. _______________________________________  Our artificial lightning weapon, dubbed Thor's Hammer, is the most powerful weapon we have ever developed.  This targeted lightning strike is capable of destroying small enemy units with a single shot!"
+    TEASER          "Makes the Thor's Hammer weapon available. _______________________________________  A new weapons system proposal has been submitted by our research staff.  Using the dielectric insulator produced by our Increased Capacitance Circuitry project, a rapid discharge of a bank of capacitors could create an artificial lightning strike of massive power.  The difficulty is in targeting the strike to strike enemy units, rather than a random discharge."
+    REQUIRES        07403
+    REQUIRES        10000
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Solar Power" 10204
+    CATEGORY        3
+    DESCRIPTION     "Structure Factories may now produce Solar Power Array structure kits; Spaceports may now produce Solar Power Satellites. _______________________________________  The solar power system, comprised of a collector satellite and ground-based receiver, is an inexpensive alternative energy source.  The satellite, once in orbit, can be retargeted at a new ground location after an evacuation, and the receivers are much less volatile than our Tokamak fusion reactors."
+    TEASER          "Allows production of the Solar Power systems. _______________________________________  The technology behind solar power has been available for quite some time, the size of the solar collector panels needed to generate a significant amount of power has always been judged prohibitive, especially since our periodic evacuations began.  However, with the redevelopment of a space program, it is possible to build a solar collector satellite which beams the energy it collects to a ground-based receiver."
+    REQUIRES        10000
+    COST            3200
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Sensor Package" 10206
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Sensor Package. _______________________________________  Before we can depart the New Terra system, we must have a destination.  Our Sensor Package includes a Nanoprobe launcher, capable of sending thousands of microbe-sized probes toward potentially habitable planets, and a sensor/telemetry system which will evaluate the reports sent back by the Nanoprobes."
+    TEASER          "Allows production of the Sensor Package at the Spaceport. _______________________________________  A portion of the 'Conestoga's sensor suite was among the debris retrieved from the second crash site.  This appears to have been part of the telemetry system used to monitor the deep-space probes sent out to locate a suitable destination.  We believe we can use this as the basis for a similar system."
+    REQUIRES        10000
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Stasis Systems" 10208
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Stasis Systems. _______________________________________ The Stasis Systems contain suspended animation chambers for 200 colonists.  This module, like the Habitat Ring, is equipped with our superconductive magnetic coil radiation shield system."
+    TEASER          "Allows production of the Stasis Systems at the Spaceport. _______________________________________ The cold-sleep system used in the 'Conestoga' successfully slowed the metabolic rate of the colonists traveling from Earth to New Terra, but at the cost of shortening their lives once they had arrived.  Fortunately, our medical technology has advanced significantly since our arrival, and we believe we now have a method of inducing true suspended animation without the same loss of longevity."
+    REQUIRES        03303
+    REQUIRES        10205
+    REQUIRES        10000
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Orbital Package" 10209
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Orbital Package. _______________________________________ This group of satellites and probes, to be deployed upon reaching our destination planet, includes EDWARD, a communications satellite, a solar power satellite, orbital observers, and several types of atmospheric and geologic probes."
+    TEASER          "Allows production of the Orbital Package at the Spaceport. _______________________________________ Upon arrival at our new home, we want to deploy a series of satellites and probes that will provide data about the planet and support colony operations."
+    REQUIRES        10000
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Magma Purity Control" 10301
+    CATEGORY        6
+    DESCRIPTION     "Magma Well yield increased. _______________________________________  Our Magma Purity Control technique removes several waste materials from the magma before cooling it for transport to the Rare Ore Smelter."
+    TEASER          "Increases Magma Well yield. _______________________________________  Although magma contains all of the elements we classify as Rare Metals, it also contains several other elements which are essentially waste materials.  We may be able filter out some of these additional materials in our molten magma flow."
+    IMPROVE_DESC    "Improved Rare Ore yield"
+    REQUIRES        08103
+    REQUIRES        10000
+    COST            4500
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP MAGMA_WELL Production_Capacity 150
+END_TECH
+
+BEGIN_TECH "Advanced Armoring Systems" 10303
+    CATEGORY        4
+    DESCRIPTION     "Lynx and Panther armor upgraded. _______________________________________  Materials research done as part of our space program has resulted in an alloy well suited for use in combat vehicle armor."
+    TEASER          "Upgrades Lynx and Panther armor. _______________________________________  The technologies developed by our space program have some spinoff applications on New Terra.  One of these is an improvement to the armor systems we use on some of our vehicles."
+    IMPROVE_DESC    "Increased armor"
+    REQUIRES        10000
+    COST            3200
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP LIGHT_TANK Armor 2
+    UNIT_PROP MED_TANK Armor 3
+END_TECH 
+
+BEGIN_TECH "Grenade Loading Mechanism" 10306
+    CATEGORY        7
+    DESCRIPTION     "Improves EMP and Acid Cloud rate of fire. _______________________________________  The hydraulic grenade loading mechanism used in some of our weapons turrets had been designed to handle ammunition that was much less shock-resistant that those we currently have in use.  Increasing the 'rattle' tolerances of the system allows for a faster loading system."
+    TEASER          "Improves EMP and Acid Cloud rate of fire. _______________________________________  Tests of the reloading mechanism in our grenade launching weapons, the EMP and Corrosive Acid have revealed some potential areas of improvement."
+    IMPROVE_DESC    "Improved rate of fire"
+    REQUIRES        07212
+    COST            3600
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP EMP Rate_Of_Fire 120
+    UNIT_PROP ACID Rate_Of_Fire 120
+END_TECH
+
+;******************************************************************************
+;Tech Level 11 / Mission 11
+;
+;This is a unit mission; no research is completed.
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 11" 11000
+    CATEGORY        0
+    COST            0
+END_TECH
+
+;******************************************************************************
+;Tech Level 12 / Mission 12
+;******************************************************************************
+
+BEGIN_TECH "Tech Level 12" 12000
+    CATEGORY        0
+    COST            0
+END_TECH
+
+BEGIN_TECH "Precision Trajectory Projection Software" 10309
+    CATEGORY        10
+    DESCRIPTION     "Observatory's meteor targeting system improved. _______________________________________  Revision of the meteor tracking software, using algorithms developed as part of the space program, has improved the trajectory projection software used at the Observatory.  This will increase the probability of destroying incoming meteors before they reach our colony."
+    TEASER          "Improves Observatory's meteor targeting system. _______________________________________  Our Meteor Defense is effective... when it can find the target.  Field tests of the system show a significant possibility of inaccurate targeting coordinates generated by the Observatory tracking software."
+    IMPROVE_DESC    "Improved meteor tracking"
+    REQUIRES        08106
+    REQUIRES        12000
+    COST            2400
+    MAX_SCIENTISTS  14
+    LAB             2
+    UNIT_PROP OBSERVATORY Improved 1
+END_TECH
+
+BEGIN_TECH "Phoenix Module" 10401
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Phoenix Module. _______________________________________  When deployed, this self-contained lander transforms into several of the initial structures and vehicles needed to start a colony.  These structures are all capable of operation without human presence, and will give our new home a head start."
+    TEASER          "Allows production of the Phoenix Module at the Spaceport. _______________________________________  Before we land our colonists on the new planet, we must send a lander to prepare the early stages of a colony.  We have in our databases portions of the plans for the Seed Factory used on our arrival on New Terra, but they are incomplete and obsolescent."
+    REQUIRES        12000
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Heat Dissipation Systems" 12101
+    CATEGORY        7
+    DESCRIPTION     "Laser, Rail Gun, and Thor's Hammer rate of fire increased. _______________________________________  Our new weapons turret heat sinks allow these weapons to be fired more quickly.  The heat sinks use dichlorodifluoromethane gas as a coolant to prevent weapon overheating."
+    TEASER          "Increases Laser, Rail Gun, and Thor's Hammer rate of fire. _______________________________________  Some of our weapons systems generate high levels of heat when repeatedly fired in combat.  These weapons require a cooling-off period before they can be fired again.  This delay could be shortened by adding a heat dissipation system."
+    IMPROVE_DESC    "Increased rate of fire"
+    REQUIRES        10102
+    REQUIRES        12000
+    COST            3600
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP LASER Rate_Of_Fire 22
+    UNIT_PROP RAIL_GUN Rate_Of_Fire 65
+    UNIT_PROP THORS_HAMMER Rate_Of_Fire 100
+END_TECH
+
+; This item is not-researchable, but is used by the script to enable the
+;     children's module in mission 12.
+
+BEGIN_TECH "Children's Module" 12499
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        12000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+; This item is not-researchable, but is used by the script to enable the
+;     evacuation module in mission 12.
+
+BEGIN_TECH "Evacuation Module" 12599
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        12000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+; Unresearchable tech - given by mission script to allow Nuclear Missile research
+BEGIN_TECH "Enable Nukes" 12666
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        12000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+BEGIN_TECH "Nuclear Missiles" 12667
+    CATEGORY        7
+    DESCRIPTION     "Spaceports may now produce Nuclear Missiles. _______________________________________   Although dubbed 'nuclear missiles', our new superweapons are not actually the result of an uncontrolled fission reaction like the ones used on 20th century Earth.  These missiles are in fact employing a hot-fusion reaction, not unlike our Tokamak Fusion Reactors, with the important distinction that the reaction is designed to undergo a catastrophic containment failure just before impact.  It would be more accurate to describe these weapons as 'quick-and-dirty fusion missiles'.  The use of 'nuke' as a colloquialism is still hard to shake, however."
+    TEASER          "Allows production of Nuclear Missiles at the Spaceport. _______________________________________   Our army is no match for the combined forces of Eden and Plymouth.  Even the most optimistic projections show we will fall before we can evacuate the planet... unless we can call upon one final trump card.  In one final act of desperation, the Council has authorized the development of an extremely powerful weapon to see us through this crisis."
+    REQUIRES        12666
+    EDEN_COST       3600
+    PLYMOUTH_COST   4500
+    MAX_SCIENTISTS  16
+    LAB             3
+END_TECH
+
+;******************************************************************************
+;Make these available
+; These techs are only unavailable because this techtree is based off of edentek.
+; They should be made available!  Find a mission to make them researchable in!
+;******************************************************************************
+
+BEGIN_TECH "ESG - Make Available" 07103
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH "Supernova - Make Available" 08203
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+
+;******************************************************************************
+;Unavailable Technologies
+; These technologies are never researchable.  They may be given by the mission script.
+;
+; 03306 Recreation Facility (useless)
+; 05108 Forum (useless)
+; 05701 Lava Walls (both colonies get Microbe Walls instead)
+; 10101 RLV (given for free if players choose to attack Eden)
+; 12202 EMP Missile (never available, players get the nuke enabler tech if they attack Plymouth)
+
+;******************************************************************************
+
+BEGIN_TECH "Lava Walls - Not Available" 05701
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH "Improved Launch Vehicle" 10101
+    CATEGORY        8
+    DESCRIPTION     "Spaceports may now produce the Reusable Launch Vehicle (RLV). _______________________________________  Though the RLV is much more costly than a single SULV, on a per-launch basis, the RLV is significantly less expensive."
+    TEASER          "Allows production of the Reusable Launch Vehicle (RLV) at the Spaceport. _______________________________________  Our SULVs are proving quite expensive on a per launch basis.  Our aeronautical experts have proposed a new launch vehicle to address this issue."
+    REQUIRES        10000
+    COST            -1
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "EMP Missile - Not Available" 12201
+    CATEGORY        0
+    COST            -1
+END_TECH
+
+BEGIN_TECH "Leisure Studies - Not Available" 03306
+    CATEGORY        9
+    DESCRIPTION     "Structure Factories may now produce Recreation Facility structure kits.  _______________________________________ Our leisure studies project has produced a number of activities, for both individuals and groups, that will amuse, entertain, and stimulate our colonists.  Recreation facility personnel are trained to organize physical exercise classes, games, and tournaments, and to teach various handicrafts."
+    TEASER          "Allows production of Recreation Facility structure kits at the Structure Factory.  _______________________________________ Our colonists are asking for additional entertainment options for their off-duty hours.  This project proposes to tap the humanities database for possible leisure-time activities."
+    REQUIRES        03406
+    REQUIRES        05000
+;    EDEN_COST       1400
+;    PLYMOUTH_COST   500
+    COST            -1
+    MAX_SCIENTISTS  7
+    LAB             2
+END_TECH 
+
+BEGIN_TECH  "Public Performance - Not Available" 05108
+    CATEGORY        9
+    DESCRIPTION     "Structure Factories may now produce Forum structure kits.  _______________________________________ This entertainment facility provides sufficient seating for performances of concerts, plays, poetry readings, and public meetings."
+    TEASER          "Allows production of Forum structure kits at the Structure Factory. _______________________________________ Many of our colonists have been exploring the entertainment databases brought from Earth during their off-duty hours.  Some have proposed putting on dramatic presentations, musical concerts, and similar entertainments as a method of raising morale.  Unfortunately, we have no facilities in which such events could be presented."
+    REQUIRES        03306
+;    EDEN_COST       -1
+;    PLYMOUTH_COST   800
+    COST            -1
+    MAX_SCIENTISTS  8
+    LAB             2
+END_TECH
+

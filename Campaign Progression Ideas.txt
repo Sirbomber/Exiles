@@ -1,0 +1,171 @@
+Mission 1: On the Run (Standard base mission with evacuation required) [Exodus]
+You just escaped and are hiding out in a canyon; unfortunately the area is volcanically
+active and the bad guys are looking for you.  Grow your colony and evacuate before you
+are destroyed by lava or superior firepower.
+Enemies: Plymouth units, lava
+Base mission
+
+
+Mission 2: Sabotage (Stealthy unit mission) [Extraction]
+Plant spies in Eden.  Liberate some captive scientists and destroy the labs they were in.
+Unbeknownst to the players, destroying those labs releases what will come to be known as
+the Blight.  Players can't destroy too much Eden equipment though (fail the mission if they
+destroy anything other than labs, turrets, units, and VFs) as that will allow Plymouth to
+focus all of their might on the Exiles, and the Exiles can't survive that.
+Enemies: Eden base, invisible Blight (eventually)
+Unit mission
+
+Commanders,
+We have successfully relocated our base, far from the prying eyes of both Eden and Plymouth.
+We believe both colonies will be too preoccupied fighting each other to pay much attention
+to us, but in order for us to survive we will have to remain beneath their notice.  This
+makes your next mission all the more complicated: several important scientists sympathetic
+to our cause are being forced to work for Eden.  These scientists have been feeding us
+information, but they suspect Eden security is now aware of their actions.  We must
+infiltrate the colony, liberate these scientists, and do so while attracting as little
+attention as possible.
+
+Eden is heavily militarized of late, but most of their forces are engaged in battle with
+Plymouth; thus most of their defenses are static fortifications.  The scientists have
+identified two power stations, one west and the other south of the colony, that power these
+fortifications; destroying them should allow your forces to get past the outer perimeter,
+but be aware that the destruction of these facilities will likely attract attention.
+Keep in mind that a direct attack on an active military unit or structure will provoke
+a counterattack, one which your forces are unlikely to survive.
+
+The lab our scientists are held in works on highly sensitive projects, including experimental
+weapons technology.  Expect the lab to be defended by some of these weapons.  Luckily, the
+lab's defenses are kept on a network isolated from the rest of the colony's defenses; you
+should be able to destroy these without raising an alert.  Once the area around the lab is
+clear, move an Evacuation Transport next to the lab to rescue the scientists.
+
+It is imperative that we continue to receive intelligence reports from inside the colony.
+Move the specially modified Scouts next to the Eden Command Center to plant some of our
+spies within the colony.
+
+Lastly, the conflict between Eden and Plymouth is the only reason we are still alive.
+Although it may be tempting, if we were to destroy Eden now, Plymouth would be able to
+throw its entire military might into hunting us down, and all projections show they would
+completely annihilate us.  Minimize collateral damage as much as possible: destroy only
+what you need to, and under no circumstances are you to destroy the Command Center or
+any factories or smelters.
+
+Time is of the essence, Commanders.
+Good luck.
+
+Mission 3: Crossfire (Hold-out mission with bases) [Expatriates]
+Several scientists are defecting to our side; defend the outpost they're hiding in until
+reinforcements arrive.
+
+Briefing:
+Our spies in Eden report the colony has been abandoned and the survivors relocated elsewhere.
+Official reports blame an experimental chemical weapon involving a highly corrosive gas that
+was accidentally activated when we destroyed the Eden hotlab during our recent raid, though
+some of our scientists doubt the veracity of these reports.  Curiously, satellite imagery
+suggets the same thing has happened to Plymouth.  Whatever the cause of these recent events,
+our new base is remote enough that we are not in any immediate danger.
+
+The defecting scientists we rescued from Eden have been vetted and are recovering at a remote
+installation.  Unfortunately, it appears one of the defectors was a mole, and we have reason
+to believe she was able to notify Eden of the location of the outpost prior to her discovery.
+The outpost is fortified well enough that Eden will not be able to mount a direct assault on
+it without diverting too many forces from its many battles with Plymouth for a few weeks,
+but it will eventually fall.  Our analysts believe we should evacuate the scientists now,
+while Eden only has a minor presence in the area.
+
+We will move the scientists in several Evacuation Transports.  Multiple transports will
+depart simultaneously, moving along different paths, forcing Eden to thin its forces.  You
+will escort the transports to safety.
+
+These people are counting on you, Commanders.
+Good luck.
+
+OLD:
+We have received reports that both colonies have armed escorts en route to a Conestoga
+crash site to retrieve wreckage from the starship.  We are not sure for what purpose they
+are doing this, but the Council has decided that if both colonies are willing to fight over
+this, then retrieving the wreckage before either of them can is our top priority.
+Enemies: Eden units, Plymouth units (not allied)
+Base mission (small outpost, extensive rubble; must use to supplement mining)
+
+Mission 4: Contingency (wreckage recovery mission with bases) [Excavation]
+We have discovered that the "chemical weapon" that forced the evacuation of Eden and
+Plymouth is in fact Eden's experimental terraforming microbe.  Our scientists call it
+"The Blight" and we have reason to believe it is lethal to humans.  Although we are still
+not in any immediate danger, projections show the microbe grows at an alarming rate.  We are
+looking into a way to stop this threat, but we believe our best chance at survival is to
+build a new starship and escape to another world.  Since Eden and Plymouth were both
+interested in the starship wreckage we recently recovered, we can only assume they have
+reached the same conclusion.  If we hold the key to their survival, we can only expect
+their attacks to become more frequent in their desperation.
+
+Satellite reconnaissance has detected Plymouth forces trailing our convoy returning from
+the Conestoga crash site.  We cannot afford to lose the wreckage we recovered, but likewise
+we cannot lead Plymouth back to our primary base.  We have prepared a small outpost that we
+will divert the wreckage convoy to.  Defend the outpost and use what we learn to begin
+construction of our new starship.
+
+
+Enemies: Plymouth (base or units, not decided yet), Blight
+Base mission
+
+Mission 5: [Extraction]
+A Plymouth outpost, under threat from the Blight, has contacted the Exiles seeking help.
+Plymouth's leadership suspects the civlians are sympathetic to the rebels, and refuses to
+let them evacuate, hoping to use them as an example.  Military patrols have been put in place,
+and several transports attempting to flee have already been destroyed by Plymouth forces.
+
+Rebel forces will sneak in under cover of darkness to escort the escaping civilians past
+the blockade.  The civilians have been preparing an evacuation convoy in secret.  The convoy
+is hidden inside the outpost's Garages and will be deployed following an "accident" at the
+Tokamak.  Vehicles must keep their lights off to avoid detection by Plymouth forces.  Turning
+lights on strategically can be used to sacrifice a unit, luring patrols away from the convoy.
+
+About halfway through the mission, the sun rises and it looks like the patrols will hunt the convoy down.
+Then the Blight spawns, conveniently wiping out the patrols, but turning the mission into a race against the clock.
+
+Mission 6:
+Following the run-in with the Blight, the Exiles now realize the gravity of the situation and are redoubling their
+starship efforts.  Since rocket launches would allow Eden and Plymouth to identify the location of the hidden Exiles
+base, a temporary outpost must be constructed along New Terra's equator; unfortunately the only viable location
+is the site of Eden and Plymouth's latest skirmish.  The mission starts with a cutscene of a Plymouth base being
+destroyed by Eden forces.  Plymouth reinforcements spawn and the two sides fight; the players eliminate any
+stragglers and build over the ruins of the Plymouth base.  Players must then deal with E/P forces constantly entering
+the map, which sometimes target each other, but sometimes go after the players.
+
+Enemies: Eden units, Plymouth units, Blight (E/P hostile to each other)
+Base mission
+
+Mission 7:
+
+
+Enemies: Eden base
+Unit mission
+
+Mission 8:
+
+Penultimate Mission(s):
+Following a massive buildup, the Exiles are ready for a full-scale assault... but who will they attack?
+Either way, each player will get a powerful army to fight a big battle with.
+
+A (vs. Eden):
+Spies report Eden has abandoned its Blight counteragent program and is throwing all of its weight into its belated
+starship program.  To try to make up for lost time, Eden has developed RLVs.  The Exiles will raid the colony,
+steal the RLVs (and the data for how to make them), retrieve their spies, and destroy the Spaceports, Advanced Labs,
+and Vehicle Factories.  Beating this mission will allow the Exiles to start the final mission with RLVs, and Eden
+will have far fewer Thor's Hammer Tigers during the mission.
+
+B (vs. Plymouth):
+Analysis of recent satellite imagery indicates Plymouth has made a worrying development: they are weaponizing their
+SULVs.  These new missiles can strike anywhere on the planet, but we suspect their true purpose is to allow Plymouth
+to disable our Skydock and commandeer our starship.  The Exiles will raid the colony, steal the EMP Missile data,
+and destroy the Spaceports, Advanced Labs, and Vehicle Factories.  Beating this mission will allow the Exiles to
+research Nuclear Weapons in the final mission, and Plymouth will not be able to use EMP Missiles during the mission.
+
+Final Mission: Exodus
+We have nearly completed our starship and are prepared to abandon this dying world.
+Unfortunately, the enemy has finally located our main base and, in their desperation,
+Eden and Plymouth have allied against us.  Hold them off long enough to complete the
+starship and evacuate our people to it.
+Enemies: Eden and Plymouth armies (allied), Blight
+Base mission

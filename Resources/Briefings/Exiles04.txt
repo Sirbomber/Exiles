@@ -1,0 +1,43 @@
+Commanders,
+
+The liberated scientists have successfully been relocated, and salvage teams were able to
+recover most of our assets and materials.  If Eden were to mount another attack against
+the outpost, all they would find now would be an empty desert.  Our people have been
+galvanized by your victory, which will keep morale strong in these difficult times.
+We're going to need a source of hope, because we have made a terrible discovery.
+
+Our spies have uncovered the truth of the mysterious "chemical weapon" that was released
+during our raid on the Eden research outpost.  They have discovered that, when we destroyed
+the hot lab, we unwittingly released a mutated microbe, developed as part of Eden's
+terraforming experiments.  Eden's scientists call it "The Blight"; it is lethal to humans,
+is not stopped by our structures' environmental seals, can compromise our vehicle's
+on-board boptronic computers, and has already infected everything within a 1,500 km radius
+of where it was released.
+
+Supposedly, Eden's top scientists are working on a counter-agent, but we do not want to leave
+our fate in the hands of our oppressors, and lack the expertise or technical details of the
+microbe to develop our own counter-agent.  After much deliberation, the Council has decided
+our best hope for survival is to begin construction of a new starship we can use to evacuate
+the planet.  We have prepared a research expedition to the crash site of the Conestoga, the
+starship that brought our ancestors to New Terra.
+
+The purpose of this mission is to pave the way for our new Space Program.  We will need to
+design a dedicated facility for manufacturing and launching rockets and their cargo into
+orbit.  Our scientists have already proposed designs for a satellite capable of advanced
+disaster prediction, and an orbital command and control facility to oversee the construction
+of the starship.  Developing and placing both of these projects into orbit would be an
+excellent first step for our Space Program.
+
+Advance teams have identified several pieces of starship wreckage intact enough that we
+should be able to reverse engineer useful technologies.  Load the identified wreckage into
+Cargo Trucks, then return it to a Spaceport for processing.
+
+Our scouts have also reported being fired on by Plymouth forces operating in the area.  We
+are not sure why they are here, but if they are aware of the threat of the Blight, it's
+likely Plymouth's leaders have reached the same conclusions as us and are also planning to
+abandon the planet.  If so, it is unlikely they will simply let us "have" the wreckage.
+They have positioned their forces around several large chunks of wreckage, but it looks
+like they haven't yet determined what is and is not valuable.  Since we already know what
+we're looking for, we'll have to use this to our advantage while we have the chance.
+
+Be prepared for a fight, Commanders.

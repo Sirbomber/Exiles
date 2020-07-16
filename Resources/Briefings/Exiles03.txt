@@ -1,0 +1,54 @@
+Commanders,
+
+Our spies in Eden report the outpost was abandoned shortly after our raid, and the survivors
+relocated elsewhere.  Official reports blame an experimental chemical weapon involving a
+highly corrosive gas that was accidentally activated when we destroyed the Eden hotlab,
+though some of our scientists doubt the veracity of these reports.  Satellite imagery reveals
+extensive damage to the surviving structures; curiously, some automated systems still appear
+to be operational.  Worryingly, imagery also suggets that whatever destroyed the Eden research
+outpost has also effected a Plymouth mining station a few kilometers to the northest.  Whatever
+the cause of these recent events, it appears to be spreading.  Our new base is remote enough
+that we are not in any immediate danger, but we will continue to monitor the situation.
+
+In the meantime, we have more pressing concerns to attend to.  We have brought the scientists
+we rescued from Eden to a secret military outpost hidden in Perlman Canyon, to verify their
+stories and allow them a chance to recuperate from their ordeal.  Unfortunately, it appears
+one of these scientist was a loyalist mole.  Although the traitor has been dealt with, we
+suspect she was able to notify Eden to the location of our outpost before she was discovered.
+We are preparing to transfer the scientists to our main base, but computer projections show
+that if they were to be relocated now, Eden military forces would overtake their escort
+convoy, recapture or kill the scientists, and possibly be able to deduce the secret
+location of our base.  We cannot allow this to happen.
+
+Thus, our analysts believe our best course of action is to fortify the outpost now, while
+Eden has only a minor military presence in the area.  Reinforcements are already en route
+from our base, and computer simulations show a 70% chance they will arrive before Eden
+can respond with enough force to overwhelm the defenders.  Unfortunately, this outpost is
+lacking its own Structure Factory, so you will have to make do without.
+
+Perlman Canyon is surprisingly rich in unusual kinds of ores.  Our outpost here was originally
+built so we could study these so-called "rare ores", and is equipped with our new Rare Ore
+Smelter facility.  Our scientists believe they can make use of these rare ores in the design
+of new weapons technologies.
+
+Although highly mobile, the Lynx may lack the durability to serve in a defensive role for as
+long as you will need it to.  One of the rescued scientists was developing a reinforced
+combat chassis and, although he destroyed much of his data before leaving Eden, he was able
+to smuggle out blueprints for a prototype.  We believe bringing this design into
+mass-production may give us the edge we need.
+
+Some of our scientists have been experimenting with a way to generate localized
+electromagnetic pulses powerful enough to temporarily disable vehicles and structures.
+They have transmitted their data to the researchers stationed at this outpost, who are
+eager to adapt this technology into a weapon and begin field tests.
+
+Perlman Canyon is also home to an unusual weather phenomenon: dust storms accompanied by
+static electrical discharges capable of damaging our structures and vehicles.  Though rare,
+these electrical storms have been becoming increasingly common, and there have been rare
+reports of these storm systems forming all over New Terra.  Researching these storms and
+developing an early-warning system will keep our people happy and allow us to take
+precautions.
+
+Innocent lives are in your hands, Commanders.
+Good luck.
+
