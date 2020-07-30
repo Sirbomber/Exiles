@@ -1,1 +1,7 @@
 /Campaign Progression Ideas.txt
+Debug
+Release
+*.suo
+*.user
+*.db
+.vs

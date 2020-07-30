@@ -44,7 +44,7 @@ void SetupAI()
 	CreateTimeTrigger(1, 0, 50, "AntiCheat");
 }
 
-void SpawnAttack1()
+Export void SpawnAttack1()
 {
 	// Attack strength:
 	// 10 Laser Lynx, east (8 if <3 players)
@@ -69,7 +69,7 @@ void SpawnAttack1()
 
 }
 
-void SpawnAttack2()
+Export void SpawnAttack2()
 {
 	// Attack strength:
 	// 1-2 players:
@@ -111,7 +111,7 @@ void SpawnAttack2()
 
 }
 
-void SpawnAttack3()
+Export void SpawnAttack3()
 {
 	// Attack strength:
 	// 1-2 players:
@@ -164,7 +164,7 @@ void SpawnAttack3()
 
 }
 
-void SpawnAttack4()
+Export void SpawnAttack4()
 {
 	// Attack strength:
 	// 11 Rail Gun Lynx, southeast
@@ -185,7 +185,7 @@ void SpawnAttack4()
 }
 
 
-void SpawnAttack5()
+Export void SpawnAttack5()
 {
 	// Attack strength:
 	// 19 Laser Lynx + 11 Rail Gun Lynx, southeast
@@ -236,7 +236,7 @@ void SpawnAttack5()
 
 }
 
-void SpawnAttack6()
+Export void SpawnAttack6()
 {
 	// Attack strength:
 	// 22 Laser Lynx + 10 Rail Gun Lynx, east
@@ -302,7 +302,7 @@ void SpawnAttack6()
     FG[4].DoAttackEnemy();
 }
 
-void SpawnAttackF()
+Export void SpawnAttackF()
 {
 	// Repeat performance of everything we've seen so far.
 	// But the players get reinforcements to mop it up, so it should be okay.
@@ -364,7 +364,7 @@ void SpawnAttackF()
 	CreateTimeTrigger(1, 1, 320, "ReinforcePlayers");
 }
 
-void ReinforcePlayers()
+Export void ReinforcePlayers()
 {
 	// Create a massive wave of reinforcements for the players
 	CreateTimeTrigger(1, 0, 25, "ReinforceWave");
@@ -374,7 +374,7 @@ void ReinforcePlayers()
 int numReinforcements = 120;
 int rPlayer = 0;
 
-void ReinforceWave()
+Export void ReinforceWave()
 {
 	if (numReinforcements == 0)
 	{
@@ -409,7 +409,7 @@ void ReinforceWave()
 	}
 }
 
-void CheckLights()
+Export void CheckLights()
 {
 	if (FG[1].HasBeenAttacked())
 	{
@@ -432,7 +432,7 @@ void CheckLights()
 	}
 }
 
-void AntiCheat()
+Export void AntiCheat()
 {
 	if (cheated)
 	{

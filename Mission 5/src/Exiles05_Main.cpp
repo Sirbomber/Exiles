@@ -80,8 +80,7 @@ extern int numAI = -1;
 
 Export int InitProc()
 {
-    // Initialization stuff goes in InitProc.  Mind-blowing.
-    DoGameSetup();      // Handles morale settings and the playlist
+    DoGameSetup();
 	SetupMiscObjects();
 
 	// Determine AI player number.
@@ -213,7 +212,7 @@ Export int InitProc()
 
 	// Test
 	CreateTimeTrigger(1, 1, 17000, "Sunrise");
-	//CreateTimeTrigger(1, 1, 1700, "Sunrise");
+	//CreateTimeTrigger(1, 1, 1700, "Sunrise"); // Blight speed test
 
 	return 1; // return 1 if OK; 0 on failure
 

@@ -41,7 +41,7 @@ void DoRandomBases()
 
 void SetupBase1(int pNo)
 {
-	Unit Unit1;
+	UnitEx Unit1, Mine[2], Smelter[3];
 	map_id weapon = mapMicrowave;
 	if (Player[pNo].IsEden())
 	{
@@ -73,26 +73,30 @@ void SetupBase1(int pNo)
 	TethysGame::CreateUnit(Unit1, mapStandardLab, LOCATION(33+31, 4-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(37+31, 7-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(37+31, 4-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(45+31, 3-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[0], mapCommonOreSmelter, LOCATION(45+31, 3-1), pNo, mapNone, 0);
 	if (Player[pNo].Difficulty() == 0)
 	{
-		TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(45+31, 7-1), pNo, mapNone, 0);
+		TethysGame::CreateUnit(Smelter[2], mapCommonOreSmelter, LOCATION(45+31, 7-1), pNo, mapNone, 0);
 	}
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(50+31, 6-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(31+31, 16-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapRareOreSmelter, LOCATION(31+31, 13-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[0], mapCommonOreMine, LOCATION(50+31, 6-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[1], mapCommonOreMine, LOCATION(31+31, 16-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[1], mapRareOreSmelter, LOCATION(31+31, 13-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapVehicleFactory, LOCATION(23+31, 4-1), pNo, mapNone, 0);
 
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(47+31, 5-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(48+31, 6-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	if (Player[pNo].Difficulty() == 0)
 	{
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(47+31, 7-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(48+31, 8-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 	}
 	TethysGame::CreateUnit(Unit1, mapConVec, LOCATION(30+31, 10-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
@@ -110,8 +114,10 @@ void SetupBase1(int pNo)
 		Unit1.DoSetLights(1);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(29+31, 17-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(30+31, 17-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 
 	TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(54+31, 4-1), pNo, weapon, 0);
 		Unit1.DoSetLights(1);
@@ -146,7 +152,7 @@ void SetupBase1(int pNo)
 
 void SetupBase2(int pNo)
 {
-	Unit Unit1;
+	UnitEx Unit1, Mine[2], Smelter[3];
 	map_id weapon = mapMicrowave;
 	if (Player[pNo].IsEden())
 	{
@@ -177,32 +183,38 @@ void SetupBase2(int pNo)
 	TethysGame::CreateUnit(Unit1, mapAgridome, LOCATION(40+31, 17-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapAdvancedLab, LOCATION(33+31, 21-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapVehicleFactory, LOCATION(48+31, 19-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(50+31, 24-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[0], mapCommonOreSmelter, LOCATION(50+31, 24-1), pNo, mapNone, 0);
 	if (Player[pNo].Difficulty() == 0)
 	{
-		TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(50+31, 28-1), pNo, mapNone, 0);
+		TethysGame::CreateUnit(Smelter[2], mapCommonOreSmelter, LOCATION(50+31, 28-1), pNo, mapNone, 0);
 	}
-	TethysGame::CreateUnit(Unit1, mapRareOreSmelter, LOCATION(37+31, 31-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[1], mapRareOreSmelter, LOCATION(37+31, 31-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(44+31, 26-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(44+31, 23-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(55+31, 27-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(37+31, 34-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[0], mapCommonOreMine, LOCATION(55+31, 27-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[1], mapCommonOreMine, LOCATION(37+31, 34-1), pNo, mapNone, 0);
 
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(53+31, 24-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(54+31, 25-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	if (Player[pNo].Difficulty() == 0)
 	{
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(52+31, 29-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(53+31, 30-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 	}
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(33+31, 34-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(34+31, 35-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 	TethysGame::CreateUnit(Unit1, mapEarthworker, LOCATION(36+31, 20-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
 	TethysGame::CreateUnit(Unit1, mapConVec, LOCATION(34+31, 25-1), pNo, mapNone, 0);
@@ -253,7 +265,7 @@ void SetupBase2(int pNo)
 
 void SetupBase3(int pNo)
 {
-	Unit Unit1;
+	UnitEx Unit1, Mine[2], Smelter[3];
 	map_id weapon = mapMicrowave;
 	if (Player[pNo].IsEden())
 	{
@@ -286,30 +298,36 @@ void SetupBase3(int pNo)
 	TethysGame::CreateUnit(Unit1, mapVehicleFactory, LOCATION(14+31, 32-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(23+31, 33-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(27+31, 36-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(23+31, 41-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[0], mapCommonOreSmelter, LOCATION(23+31, 41-1), pNo, mapNone, 0);
 	if (Player[pNo].Difficulty() == 0)
 	{
-		TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(23+31, 45-1), pNo, mapNone, 0);
+		TethysGame::CreateUnit(Smelter[2], mapCommonOreSmelter, LOCATION(23+31, 45-1), pNo, mapNone, 0);
 	}
-	TethysGame::CreateUnit(Unit1, mapRareOreSmelter, LOCATION(12+31, 41-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(28+31, 44-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(12+31, 44-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[1], mapRareOreSmelter, LOCATION(12+31, 41-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[0], mapCommonOreMine, LOCATION(28+31, 44-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[1], mapCommonOreMine, LOCATION(12+31, 44-1), pNo, mapNone, 0);
 
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(26+31, 40-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(27+31, 41-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	if (Player[pNo].Difficulty() == 0)
 	{
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(26+31, 46-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(27+31, 47-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 	}
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(16+31, 43-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(15+31, 44-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 	TethysGame::CreateUnit(Unit1, mapEarthworker, LOCATION(22+31, 38-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
 	TethysGame::CreateUnit(Unit1, mapConVec, LOCATION(25+31, 38-1), pNo, mapNone, 0);
@@ -356,7 +374,7 @@ void SetupBase3(int pNo)
 
 void SetupBase4(int pNo)
 {
-	Unit Unit1;
+	UnitEx Unit1, Mine[2], Smelter[3];
 	map_id weapon = mapMicrowave;
 	if (Player[pNo].IsEden())
 	{
@@ -388,33 +406,40 @@ void SetupBase4(int pNo)
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(13+31, 55-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapMedicalCenter, LOCATION(10+31, 55-1), pNo, mapNone, 0);
 	TethysGame::CreateUnit(Unit1, mapVehicleFactory, LOCATION(24+31, 51-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(32+31, 51-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[0], mapCommonOreSmelter, LOCATION(32+31, 51-1), pNo, mapNone, 0);
 	if (Player[pNo].Difficulty() == 0)
 	{
-		TethysGame::CreateUnit(Unit1, mapCommonOreSmelter, LOCATION(32+31, 55-1), pNo, mapNone, 0);
+		TethysGame::CreateUnit(Smelter[2], mapCommonOreSmelter, LOCATION(32+31, 55-1), pNo, mapNone, 0);
 	}
 	TethysGame::CreateUnit(Unit1, mapVehicleFactory, LOCATION(17+31, 48-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapRareOreSmelter, LOCATION(23+31, 55-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(23+31, 58-1), pNo, mapNone, 0);
-	TethysGame::CreateUnit(Unit1, mapCommonOreMine, LOCATION(37+31, 54-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Smelter[1], mapRareOreSmelter, LOCATION(23+31, 55-1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[0], mapCommonOreMine, LOCATION(37 + 31, 54 - 1), pNo, mapNone, 0);
+	TethysGame::CreateUnit(Mine[1], mapCommonOreMine, LOCATION(23+31, 58-1), pNo, mapNone, 0);
+	
 
 	TethysGame::CreateUnit(Unit1, mapEarthworker, LOCATION(8+31, 49-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(35+31, 50-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(36+31, 50-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[0], Smelter[0]);
 	if (Player[pNo].Difficulty() == 0)
 	{
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(36+31, 57-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 		TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(35+31, 57-1), pNo, mapNone, 0);
 			Unit1.DoSetLights(1);
+			Unit1.DoCargoRoute(Mine[0], Smelter[2]);
 	}
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(19+31, 57-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 	TethysGame::CreateUnit(Unit1, mapCargoTruck, LOCATION(20+31, 58-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
+		Unit1.DoCargoRoute(Mine[1], Smelter[1]);
 	TethysGame::CreateUnit(Unit1, mapConVec, LOCATION(26+31, 49-1), pNo, mapNone, 0);
 		Unit1.DoSetLights(1);
 		Unit1.SetCargo(mapDIRT, mapNone);

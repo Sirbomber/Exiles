@@ -75,7 +75,7 @@ void SetupVictory(int pAI)
 	CreateVictoryCondition(1, 0, CreateSetTrigger(1, 0, 2, 2, "None", trig, Survive), "Survive until reinforcements can arrive.");
 }
 
-void OtherPlayersCheck()
+Export void OtherPlayersCheck()
 {
 	bool objMet[4] = {true,true,true,true};
 
@@ -102,7 +102,7 @@ void OtherPlayersCheck()
 	}
 }
 
-void EnableNoEnemyUnitsCheck()
+Export void EnableNoEnemyUnitsCheck()
 {
 	Survive.Enable();
 }

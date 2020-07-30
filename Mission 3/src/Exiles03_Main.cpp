@@ -70,7 +70,7 @@ BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 extern int numAI = -1;
 
-int InitProc()
+Export int InitProc()
 {
     DoGameSetup();
     DoRandomBases();
@@ -118,7 +118,7 @@ int InitProc()
 
 // ----------------------------------------------------------------------------
 
-void AIProc()
+Export void AIProc()
 {
 }
 
@@ -128,14 +128,9 @@ void __cdecl GetSaveRegions(struct BufferDesc &bufDesc)
 	bufDesc.length = 0;			// sizeof(buffer)
 }
 
-
-int StatusProc()
+Export void None()
 {
-	return 0; // must return 0
-}
-
-void None()
-{
+	//
 }
 
 // -------------------------------------------------------------

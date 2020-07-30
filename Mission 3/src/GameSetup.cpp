@@ -23,7 +23,7 @@ void SetupDisasters()
 	CreateTimeTrigger(1, 0, 2700, 4100, "Storms");
 }
 
-void Storms()
+Export void Storms()
 {
 	LOCATION start,
 		     end;
