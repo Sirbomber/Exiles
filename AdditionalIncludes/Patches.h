@@ -15,3 +15,18 @@ bool SetNukePatch(bool enable);													// Adds Nuclear Missiles to the Spac
 bool SetEvacuationModuleHook(int numColonistsRequired);							// Allows you to change the number of colonists required to launch the Evacuation Module.  -1 disables this patch.
 bool SetMessageHook(bool enable, void (__cdecl* pfnHook)(char* pChatText, int playerNum));	// Use this to define callback functions in response to specific chat message.
 
+// Not really a patch but who cares?
+void DirtRepair(int  multiplier, int  divisor);		// Do not call this directly!  Call this from a time trigger, or something that runs every few cycles.  See the example below:
+/*
+Export void InitProc()
+{
+	...
+	CreateTimeTrigger(1, 0, 1 * 25, "DirtRepairProc");
+	...
+}
+
+Export void DirtRepairProc()
+{
+  return DirtRepair(3, 1000);
+}
+*/

@@ -1,7 +1,7 @@
 Commanders,
 
 Four hours ago, we received a plea for help from a Plymouth agricultural outpost located dangerously close to The
-Blight; computer projections show their position will be infected in 4 days.  The civilians' request for an evacuation
+Blight; computer projections show their position will be infected shortly.  The civilians' request for an evacuation
 has been denied by Plymouth's leadership; it appears they suspect the colonists of being sympathetic to our cause,
 and plan to use them as an example.  Plymouth has positioned patrols in the area, and has already destroyed several
 Evacuation Transports carrying fleeing civilians.  They now ask us for help.
@@ -15,8 +15,9 @@ darkness, following an "accident" at the outpost's Tokamak, and escort the convo
 will be so heavily outnumbered, it is imperative that you do not reveal your presence to Plymouth's forces.  Keeping
 your vehicles' lights off and staying outside of illuminated areas will be necessary if the evacuation
 convoy is to survive.  Moving a single vehicle away from the convoy and turning on its lights could serve as a
-distraction for the Plymouth patrols, but once Plymouth has identified a hostile vehicle, they will not cease their
-pursuit of it.  Choose which vehicles you are willing to sacrifice carefully.
+distraction for the Plymouth patrols, but once Plymouth has identified a hostile vehicle, it will be extremely
+difficult to escape pursuit.  Choose which vehicles you are willing to sacrifice carefully.  Engaging Plymouth's
+forces should be considered the option of last resort.
 
 The timing of this operation is critical.  If the evacuation convoy has not escaped the patrols before the sun
 rises, the convoy will be spotted and destroyed.

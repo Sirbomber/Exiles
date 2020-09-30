@@ -76,24 +76,41 @@ BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 // -----------------------------------------------------------------------
 
-extern int numAI = -1;
+// Testing
+#ifdef _DEBUG
+int origTiles[256][64];
+UnitEx drawControl;
+UnitEx lightControl;
+bool showZones = false;
+bool showMap = false;
+#endif
 
 Export int InitProc()
 {
+#ifdef  _DEBUG
+	// For testing purposes only
+	for (int y = 0; y < 64; y++)
+	{
+		for (int x = 0; x < 256; x++)
+		{
+			origTiles[x][y] = GameMap::GetTile(LOCATION(x + 32, y));
+		}
+	}
+#endif
     DoGameSetup();
 	SetupMiscObjects();
 
 	// Determine AI player number.
 	for (int i = 0; i < TethysGame::NoPlayers(); i++)
 	{
-	    if (!Player[i].IsHuman() && numAI < 0)
+	    if (!Player[i].IsHuman() && X5AI::numAI < 0)
 	    {
-	        numAI = i;
+			X5AI::numAI = i;
 			break;
 	    }
 	}
 
-	for (int i = 0; i < numAI; i++)
+	for (int i = 0; i < X5AI::numAI; i++)
 	{
 		// Center player view
 		Player[i].CenterViewOn(13 + 31, 10 - 1);
@@ -103,9 +120,9 @@ Export int InitProc()
 		
 
 		// Set alliances
-		Player[i].AllyWith(numAI + 1);
-		Player[numAI + 1].AllyWith(i);
-		for (int j = 0; j < numAI; j++)
+		Player[i].AllyWith(X5AI::numAI + 1);
+		Player[X5AI::numAI + 1].AllyWith(i);
+		for (int j = 0; j < X5AI::numAI; j++)
 		{
 			if (i != j)
 			{
@@ -114,21 +131,14 @@ Export int InitProc()
 		}
 	}
 
-	//DoRandomBases();    // Randomize and place bases
-
-	SetupVictory(numAI);     // Creates victory and defeat conditions
-	SetupFailure(numAI);
-
-	SetupDisasters();
+	SetupVictory(X5AI::numAI);     // Creates victory and defeat conditions
+	SetupFailure(X5AI::numAI);
 
 	// Civilian base
 	UnitEx Unit1;
-	SetupFriendlyBase(numAI + 1);
-	TethysGame::CreateUnit(Unit1, mapTiger, LOCATION(4 + 31, 4 - 1), numAI + 1, mapSupernova, 0);
+	SetupFriendlyBase(X5AI::numAI + 1);
+	TethysGame::CreateUnit(Unit1, mapTiger, LOCATION(4 + 31, 4 - 1), X5AI::numAI + 1, mapSupernova, 0);
 	Unit1.DoSelfDestruct();
-
-	// Test player units
-	Player[0].GoEden(); // TEST REMOVE ME
 	
 	// Play intro cutscene (and spawn player units)
 	CreateTimeTrigger(1, 1, 1, "Intro1");
@@ -140,11 +150,10 @@ Export int InitProc()
 	X5AI::zones[0].AddRectToZone(MAP_RECT(1 + 31, 30 - 1, 50 + 31, 37 - 1));
 	X5AI::zones[0].AddRectToZone(MAP_RECT(1 + 31, 38 - 1, 54 + 31, 47 - 1));
 	X5AI::zones[0].AddRectToZone(MAP_RECT(1 + 31, 48 - 1, 56 + 31, 63 - 1));
-	X5AI::zones[0].AddRectToZone(MAP_RECT(53 + 31, 12 - 1, 58 + 31, 17 - 1));
+	X5AI::zones[0].AddRectToZone(MAP_RECT(55 + 31, 12 - 1, 58 + 31, 17 - 1));
 	X5AI::zones[0].AddRectToZone(MAP_RECT(57 + 31, 50 - 1, 73 + 31, 63 - 1));
-	X5AI::zones[0].AddRectToZone(MAP_RECT(74 + 31, 53 - 1, 84 + 31, 63 - 1));
-	X5AI::zones[0].AddRectToZone(MAP_RECT(74 + 31, 53 - 1, 85 + 31, 63 - 1));
-	X5AI::zones[0].AddRectToZone(MAP_RECT(86 + 31, 61 - 1, 89 + 31, 63 - 1));
+	X5AI::zones[0].AddRectToZone(MAP_RECT(74 + 31, 54 - 1, 85 + 31, 63 - 1));
+	X5AI::zones[0].AddRectToZone(MAP_RECT(86 + 31, 61 - 1, 87 + 31, 63 - 1));
 
 	X5AI::zones[1].AddRectToZone(MAP_RECT(50 + 31, 1 - 1, 87 + 31, 8 - 1));
 	X5AI::zones[1].AddRectToZone(MAP_RECT(56 + 31, 9 - 1, 75 + 31, 11 - 1));
@@ -156,76 +165,76 @@ Export int InitProc()
 	X5AI::zones[1].AddRectToZone(MAP_RECT(55 + 31, 32 - 1, 80 + 31, 37 - 1));
 
 	X5AI::zones[2].AddRectToZone(MAP_RECT(55 + 31, 38 - 1, 91 + 31, 48 - 1));
-	X5AI::zones[2].AddRectToZone(MAP_RECT(74 + 31, 48 - 1, 93 + 31, 52 - 1));
-	X5AI::zones[2].AddRectToZone(MAP_RECT(92 + 31, 47 - 1, 92 + 31, 48 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(74 + 31, 49 - 1, 93 + 31, 52 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(92 + 31, 46 - 1, 92 + 31, 48 - 1));
 	X5AI::zones[2].AddRectToZone(MAP_RECT(81 + 31, 32 - 1, 86 + 31, 37 - 1));
 	X5AI::zones[2].AddRectToZone(MAP_RECT(87 + 31, 36 - 1, 89 + 31, 37 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(86 + 31, 53 - 1, 100 + 31, 56 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(88 + 31, 57 - 1, 101 + 31, 63 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(94 + 31, 51 - 1, 95 + 31, 52 - 1));
 
-	/* Old Zones
-	X5AI::zones[0].AddRectToZone(MAP_RECT(1 + 31, 1 - 1, 60 + 31, 63 - 1));
-	X5AI::zones[0].AddRectToZone(MAP_RECT(55 + 31, 50 - 1, 73 + 31, 63 - 1));
-	X5AI::zones[0].AddRectToZone(MAP_RECT(74 + 31, 53 - 1, 85 + 31, 63 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(89 + 31, 1 - 1, 105 + 31, 33 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(77 + 31, 10 - 1, 88 + 31, 19 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(84 + 31, 20 - 1, 88 + 31, 23 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(106 + 31, 16 - 1, 109 + 31, 33 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(110 + 31, 24 - 1, 114 + 31, 33 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(115 + 31, 29 - 1, 116 + 31, 30 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(92 + 31, 34 - 1, 114 + 31, 40 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(102 + 31, 41 - 1, 117 + 31, 63 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(118 + 31, 46 - 1, 120 + 31, 63 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(121 + 31, 54 - 1, 128 + 31, 63 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(129 + 31, 60 - 1, 129 + 31, 63 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(93 + 31, 47 - 1, 101 + 31, 47 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(96 + 31, 48 - 1, 101 + 31, 50 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(87 + 31, 24 - 1, 88 + 31, 32 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(115 + 31, 40 - 1, 116 + 31, 40 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(88 + 31, 56 - 1, 101 + 31, 63 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(93 + 31, 41 - 1, 101 + 31, 46 - 1));
+	X5AI::zones[3].AddRectToZone(MAP_RECT(106 + 31, 1 - 1, 120 + 31, 8 - 1));
 
-	X5AI::zones[1].AddRectToZone(MAP_RECT(40 + 31, 1 - 1, 87 + 31, 8 - 1));
-	X5AI::zones[1].AddRectToZone(MAP_RECT(40 + 31, 9 - 1, 76 + 31, 20 - 1));
-	X5AI::zones[1].AddRectToZone(MAP_RECT(49 + 31, 21 - 1, 86 + 31, 35 - 1));
-	X5AI::zones[1].AddRectToZone(MAP_RECT(81 + 31, 50 - 1, 54 + 31, 33 - 1));
-	X5AI::zones[1].AddRectToZone(MAP_RECT(61 + 31, 36 - 1, 89 + 31, 49 - 1));
+	X5AI::zones[4].AddRectToZone(MAP_RECT(99 + 31, 1 - 1, 143 + 31, 15 - 1));
+	X5AI::zones[4].AddRectToZone(MAP_RECT(144 + 31, 1 - 1, 145 + 31, 1 - 1));
+	X5AI::zones[4].AddRectToZone(MAP_RECT(110 + 31, 16 - 1, 143 + 31, 21 - 1));
+	X5AI::zones[4].AddRectToZone(MAP_RECT(114 + 31, 22 - 1, 140 + 31, 27 - 1));
+	X5AI::zones[4].AddRectToZone(MAP_RECT(123 + 31, 28 - 1, 130 + 31, 30 - 1));
+	X5AI::zones[4].AddRectToZone(MAP_RECT(131 + 31, 28 - 1, 138 + 31, 31 - 1));
 
-	X5AI::zones[2].AddRectToZone(MAP_RECT(97 + 31, 21 - 1, 76 + 31, 7 - 1));
-	X5AI::zones[2].AddRectToZone(MAP_RECT(89 + 31, 1 - 1, 142 + 31, 27 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(115 + 31, 31 - 1, 147 + 31, 37 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(119 + 31, 31 - 1, 122 + 31, 31 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(119 + 31, 38 - 1, 124 + 31, 47 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(122 + 31, 48 - 1, 147 + 31, 53 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(134 + 31, 46 - 1, 141 + 31, 47 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(129 + 31, 54 - 1, 147 + 31, 56 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(132 + 31, 57 - 1, 147 + 31, 63 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(125 + 31, 38 - 1, 127 + 31, 38 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(149 + 31,  1 - 1, 256 + 31, 30 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(148 + 31, 31 - 1, 256 + 31, 63 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(145 + 31, 38 - 1, 147 + 31, 38 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(141 + 31, 29 - 1, 148 + 31, 30 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(142 + 31, 23 - 1, 148 + 31, 28 - 1));
+	X5AI::zones[5].AddRectToZone(MAP_RECT(146 + 31, 6 - 1, 148 + 31, 22 - 1));
 
-	X5AI::zones[3].AddRectToZone(MAP_RECT(124 + 31, 24 - 1, 256 + 31, 63 - 1));
-	X5AI::zones[3].AddRectToZone(MAP_RECT(149 + 31, 1 - 1, 236 + 31, 54 - 1));
-	*/
-
-	// Zone drawing test code -- remove me!
-	for (int i = 99; i < 3; i++)
-	{
-		std::list<MAP_RECT> t = X5AI::zones[i].test_GetZones();
-		for (std::list<MAP_RECT>::iterator it = t.begin(); it != t.end(); it++)
-		{
-			MAP_RECT r = *it;
-			for (int y = r.y1; y <= r.y2; y++)
-			{
-				for (int x = r.x1; x <= r.x2; x++)
-				{
-					GameMap::SetTile(LOCATION(x, y), i*100);
-				}
-			}
-		}
-	}
-	// AI units
-	SetupHostilePatrols(numAI);
-
-	// Populate unit lists (temp)
-	PlayerUnitEnum aiEnum(numAI);
-	while (aiEnum.GetNext(Unit1))
-	{
-		X5AI::aiUnits.push_back(Unit1);
-	}
+	X5AI::zones[6].AddRectToZone(MAP_RECT(169 + 31, 1 - 1, 256 + 31, 14 - 1));
+	X5AI::zones[6].AddRectToZone(MAP_RECT(175 + 31, 15 - 1, 256 + 31, 18 - 1));
 	
+	// AI units
+	SetupHostilePatrols(X5AI::numAI);
+
 	CreateVictoryCondition(1, 1, CreateEscapeTrigger(1, 1, -1, 247 + 31, 9 - 1, 9, 9, 1, mapEvacuationTransport, mapAny, -1, "None"), "At least one Evacuation Transport must reach the rendezvous beacon at (251, 13).");
 
 	SetVictoryAvi("MEBW.AVI");
 	SetDefeatAvi("MEBL.AVI");
 
-	// Test
 	CreateTimeTrigger(1, 1, 17000, "Sunrise");
-	//CreateTimeTrigger(1, 1, 1700, "Sunrise"); // Blight speed test
+
+	// Force RCC effect
+	TethysGameEx::SetRCCEffect(rccForce);
 
 	return 1; // return 1 if OK; 0 on failure
 
 }
 
 // ----------------------------------------------------------------------------
-
-struct AiControlZone
-{
-	std::list<UnitEx> aiUnitsInZone;
-	std::list<UnitEx> detectedPlayerUnitsInZone;
-	std::list<MAP_RECT> zoneAreas;
-};
 
 Export void Intro1()
 {
@@ -323,6 +332,10 @@ Export void Intro3()
 	// Wait, then spawn reinforcements
 	CreateTimeTrigger(1, 1, 230, "SpawnPlayerConvoy");
 
+	// Let the player know exactly how much they screwed up if they let a transport die.
+	CreateCountTrigger(1, 1, TethysGame::LocalPlayer(), mapEvacuationTransport, mapAny, 2, cmpLower, "LostEvacTrans1");
+	CreateCountTrigger(1, 1, TethysGame::LocalPlayer(), mapEvacuationTransport, mapAny, 0, cmpEqual, "LostEvacTrans2");
+
 	// Now that the convoy has spawned, set failure condition.
 	CreateFailureCondition(1, 1, CreateCountTrigger(1, 1, -1, mapEvacuationTransport, mapAny, 0, cmpEqual, "None"), "Convoy destroyed");
 }
@@ -333,7 +346,7 @@ Export void SpawnPlayerConvoy()
 	UnitEx Unit1;
 	map_id weapon;
 	
-	for (int i = 0; i < numAI; i++)
+	for (int i = 0; i < X5AI::numAI; i++)
 	{
 		// Make sure the player hasn't already left the game for some reason
 		if (Player[i].IsHuman())
@@ -395,7 +408,7 @@ Export void SpawnPlayerConvoy()
 	InRectEnumerator playerUnits(MAP_RECT(1 + 31, 1 - 1, 34 + 31, 63 - 1));
 	while (playerUnits.GetNext(Unit1))
 	{
-		if (Unit1.IsVehicle() && Unit1.IsLive() && Unit1.OwnerID() < numAI)
+		if (Unit1.IsVehicle() && Unit1.IsLive() && Unit1.OwnerID() < X5AI::numAI)
 		{
 			X5AI::stealthedUnits.push_back(Unit1);
 		}
@@ -406,32 +419,11 @@ Export void Sunrise()
 {
 	TethysGame::SetDaylightMoves(1);
 	TethysGameEx::ResetCheatedGame();
-	//CreateTimeTrigger(1, 1, 5280, "Blight");
 	CreateTimeTrigger(1, 1, 528, "Blight");
-
-	// Set alternate playlist
-	SongIds X05Songs_Crisis[] = { songEP62 }; // currently copied from X04 -- update!
-	TethysGame::SetMusicPlayList(1, 0, X05Songs_Crisis);
 }
 
 Export void Blight()
 {
-	// Option 1: Top/middle of map
-	/*
-	GameMap::SetVirusUL(LOCATION(141 + 31, 1 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(142 + 31, 1 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(143 + 31, 1 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(144 + 31, 1 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(145 + 31, 1 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(146 + 31, 1 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(141 + 31, 2 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(142 + 31, 2 - 1), 1);
-	GameMap::SetVirusUL(LOCATION(143 + 31, 2 - 1), 1);
-	TethysGame::SetMicrobeSpreadSpeed(280);
-	TethysGame::AddMessage((142 + 31) * 32, 1 * 32, "Microbe growth detected!", -1, sndSavnt278);
-	*/
-
-	// Option 2: Start zone
 	GameMap::SetVirusUL(LOCATION(1 + 31, 42 - 1), 1);
 	GameMap::SetVirusUL(LOCATION(1 + 31, 43 - 1), 1);
 	GameMap::SetVirusUL(LOCATION(1 + 31, 44 - 1), 1);
@@ -448,77 +440,121 @@ Export void Blight()
 	GameMap::SetVirusUL(LOCATION(4 + 31, 44 - 1), 1);
 	TethysGame::SetMicrobeSpreadSpeed(180);
 	TethysGame::AddMessage((2 + 31) * 32, (int)(42.5 * 32), "Microbe growth detected!", -1, sndSavnt278);
+
+	CreatePointTrigger(1, 0, X5AI::numAI, 256 + 31, 63 - 1, "AiUnitsEscape");
 }
+
+Export void AiUnitsEscape()
+{
+	UnitEx Unit1;
+	InRectEnumerator AtEdge(MAP_RECT(255 + 31, 63 - 1, 257 + 31, 64 - 1));
+	while (AtEdge.GetNext(Unit1))
+	{
+		if (Unit1.OwnerID() == X5AI::numAI)
+		{
+			Unit1.DoPoof();
+		}
+	}
+}
+
+Export void LostEvacTrans1()
+{
+	TethysGame::AddMessage(-1, -1, "8 Children, 13 Workers, 4 Scientists have died", TethysGame::LocalPlayer(), sndBeep8);
+}
+
+Export void LostEvacTrans2()
+{
+	TethysGame::AddMessage(-1, -1, "7 Children, 12 Workers, 6 Scientists have died", TethysGame::LocalPlayer(), sndBeep8);
+}
+
+#ifdef _DEBUG
+void Test_DrawZones()
+{
+	if (drawControl.IsLive())
+	{
+		if (drawControl.GetLights() && !showZones)
+		{
+			showZones = true;
+			for (int y = 0; y < 64; y++)
+			{
+				for (int x = 0; x < 256; x++)
+				{
+					GameMap::SetTile(LOCATION(x + 32, y), 0);
+				}
+			}
+
+			for (int i = 0; i < X5AI::NUMZONES; i++)
+			{
+				std::list<MAP_RECT> t = X5AI::zones[i].test_GetZones();
+				for (std::list<MAP_RECT>::iterator it = t.begin(); it != t.end(); it++)
+				{
+					MAP_RECT r = *it;
+					for (int y = r.y1; y <= r.y2; y++)
+					{
+						for (int x = r.x1; x <= r.x2; x++)
+						{
+							GameMap::SetTile(LOCATION(x, y), (GameMap::GetTile(LOCATION(x, y)) + i + 1) * 100);
+						}
+					}
+				}
+			}
+		}
+		else if (!drawControl.GetLights() && showZones)
+		{
+			showZones = false;
+			for (int y = 0; y < 64; y++)
+			{
+				for (int x = 0; x < 256; x++)
+				{
+					GameMap::SetTile(LOCATION(x + 32, y), origTiles[x][y]);
+				}
+			}
+		}
+	}
+	else
+	{
+		TethysGame::CreateUnit(drawControl, mapTiger, LOCATION(250 + 31, 60 - 1), 0, mapThorsHammer, 0);
+	}
+}
+
+void Test_ToggleDaylight()
+{
+	if (lightControl.IsLive())
+	{
+		if (lightControl.GetLights() && !showMap)
+		{
+			showMap = true;
+			TethysGame::SetDaylightEverywhere(1);
+		}
+		else if (!lightControl.GetLights() && showMap)
+		{
+			showMap = false;
+			TethysGame::SetDaylightEverywhere(false);
+		}
+	}
+	else
+	{
+		TethysGame::CreateUnit(lightControl, mapTiger, LOCATION(250 + 31, 59 - 1), 0, mapAcidCloud, 0);
+	}
+}
+#endif
 
 Export void AIProc()
 {
+	// Testing
+#ifdef _DEBUG
+	Test_DrawZones();
+	Test_ToggleDaylight();
+#endif
+
+	// Try to detect player units
+	X5AI::DetectPlayerUnits();
+
+	// If a player unit escapes pursuit or dies, remove it from the detected units list.
+	X5AI::ForgetPlayerUnits();
+
 	// AI group update cycles
-	std::list<UnitGroup*>::iterator aigIt = X5AI::aiGroups.begin();
-	while (aigIt != X5AI::aiGroups.end())
-	{
-		(*aigIt)->GroupStatusUpdate();
-		aigIt++;
-	}
-
-	// Check all undetected player units to see if their lights are on
-	std::list<UnitEx>::iterator i = X5AI::stealthedUnits.begin();
-	while (i != X5AI::stealthedUnits.end())
-	{
-		// Unit is dead; remove it from the list.
-		if (!i->IsLive())
-		{
-			X5AI::stealthedUnits.erase(i++);
-		}
-
-		else
-		{
-			// Lights are on, add it to the detected units list
-			if (i->GetLights() /*|| (int)pActualDaylightPos == i->Location().x*/)
-			{
-				X5AI::detectedUnits.push_back(*i);
-				X5AI::stealthedUnits.erase(i++);
-			}
-			else
-			{
-				i++;
-			}
-		}
-		
-	}
-
-	// Check undetected player units to see if they're in range of a unit (player or AI owned) with its lights on.
-
-
-	// Send the AI after nearby detected units
-	i = X5AI::aiUnits.begin();
-	while (i != X5AI::aiUnits.end())
-	{
-		if (!i->IsLive())
-		{
-			X5AI::aiUnits.erase(i++);
-		}
-		else
-		{
-			std::list<UnitEx>::iterator j = X5AI::detectedUnits.begin();
-			while (j != X5AI::detectedUnits.end())
-			{
-				if (!j->IsLive())
-				{
-					X5AI::detectedUnits.erase(j++);
-				}
-				else
-				{
-					if (X5AI::GetUnitZone(*i) == X5AI::GetUnitZone(*j))
-					{
-						i->Unit::DoAttack(*j);
-					}
-					j++;
-				}
-			}
-			i++;
-		}
-	}
-
+	X5AI::GroupManagement();
 }
 
 void __cdecl GetSaveRegions(struct BufferDesc &bufDesc)
@@ -526,13 +562,6 @@ void __cdecl GetSaveRegions(struct BufferDesc &bufDesc)
 	bufDesc.bufferStart = 0;	// Pointer to a buffer that needs to be saved
 	bufDesc.length = 0;			// sizeof(buffer)
 }
-
-/* Is this not needed anymore?
-int StatusProc()
-{
-	return 0; // must return 0
-}
-*/
 
 Export void None()
 {
