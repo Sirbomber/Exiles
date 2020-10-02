@@ -30,6 +30,8 @@ Export char LevelDesc[]		    = "4P, COOP, Exiles Mission #01 - Recovery";
 Export char TechtreeName[]		= "cooptech.txt";
 Export AIModDesc DescBlock	    = { MultiMidas, 4, 3, 0 };
 
+Export int DescBlockEx[] = { 1, 0, 0, 0, 0, 0, 0, 0 }; // Add an extra player slot for the AI
+
 HINSTANCE hInstDLL = NULL;
 BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {

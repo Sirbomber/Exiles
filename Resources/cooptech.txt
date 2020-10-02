@@ -1151,22 +1151,37 @@ BEGIN_TECH "Enhanced Defensive Fortifications" 08306
 END_TECH
 
 ;******************************************************************************
-;Tech Level 7 / Mission 7
+; Mission 5
 ;
-;No research can be completed during this mission.
+;This is a unit mission; no research is completed.
+;
 ;******************************************************************************
 
-BEGIN_TECH "Tech Level 7" 07000
-    CATEGORY        0
-    COST            0
+;BEGIN_TECH "There's nothing here" 05555
+    CATEGORY        1
+    DESCRIPTION     "No, really.  There's nothing."
+    TEASER          "Why are you still reading this?"
+    COST            -1
 END_TECH
 
 ;******************************************************************************
-;Tech Level 8 / Mission 8
+; Mission 6
 ;
-;At the end of this mission, these topics must have been completed:
-;00000                                   00000          
+;By the end of the mission, these technologies must have been researched:
+;08201 Dual-Turret Weapons Systems
+;08401 Blight-Resistant Isotopes
+;10204 Solar Power
+;10206 Sensor Package
+;10208 Stasis Systems
+;
 ;******************************************************************************
+
+; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
+; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
+; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
+; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
+; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
+; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
 
 BEGIN_TECH "Tech Level 8" 08000
     CATEGORY        0
@@ -1264,6 +1279,7 @@ BEGIN_TECH "Efficiency Engineering" 08302
     IMPROVE_DESC    "Improved production rate"
     REQUIRES        05116
     REQUIRES        05405
+    REQUIRES        08000
     EDEN_COST       -1
     PLYMOUTH_COST   4000
     MAX_SCIENTISTS  18
@@ -1330,6 +1346,38 @@ BEGIN_TECH "Acid Weaponry" 08503
     LAB             3
 END_TECH
 
+BEGIN_TECH "Solar Power" 10204
+    CATEGORY        3
+    DESCRIPTION     "Structure Factories may now produce Solar Power Array structure kits; Spaceports may now produce Solar Power Satellites. _______________________________________  The solar power system, comprised of a collector satellite and ground-based receiver, is an inexpensive alternative energy source.  The satellite, once in orbit, can be retargeted at a new ground location after an evacuation, and the receivers are much less volatile than our Tokamak fusion reactors."
+    TEASER          "Allows production of the Solar Power systems. _______________________________________  The technology behind solar power has been available for quite some time, the size of the solar collector panels needed to generate a significant amount of power has always been judged prohibitive, especially since our periodic evacuations began.  However, with the redevelopment of a space program, it is possible to build a solar collector satellite which beams the energy it collects to a ground-based receiver."
+    REQUIRES        08000
+    COST            3200
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Sensor Package" 10206
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Sensor Package. _______________________________________  Before we can depart the New Terra system, we must have a destination.  Our Sensor Package includes a Nanoprobe launcher, capable of sending thousands of microbe-sized probes toward potentially habitable planets, and a sensor/telemetry system which will evaluate the reports sent back by the Nanoprobes."
+    TEASER          "Allows production of the Sensor Package at the Spaceport. _______________________________________  A portion of the 'Conestoga's sensor suite was among the debris retrieved from the second crash site.  This appears to have been part of the telemetry system used to monitor the deep-space probes sent out to locate a suitable destination.  We believe we can use this as the basis for a similar system."
+    REQUIRES        08000
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Stasis Systems" 10208
+    CATEGORY        12
+    DESCRIPTION     "Spaceports may now produce the Stasis Systems. _______________________________________ The Stasis Systems contain suspended animation chambers for 200 colonists.  This module, like the Habitat Ring, is equipped with our superconductive magnetic coil radiation shield system."
+    TEASER          "Allows production of the Stasis Systems at the Spaceport. _______________________________________ The cold-sleep system used in the 'Conestoga' successfully slowed the metabolic rate of the colonists traveling from Earth to New Terra, but at the cost of shortening their lives once they had arrived.  Fortunately, our medical technology has advanced significantly since our arrival, and we believe we now have a method of inducing true suspended animation without the same loss of longevity."
+    REQUIRES        03303
+    REQUIRES        10205
+    REQUIRES        08000
+    COST            3500
+    MAX_SCIENTISTS  18
+    LAB             3
+END_TECH
+
 ;******************************************************************************
 ;Tech Level 9 / Mission 9
 ;******************************************************************************
@@ -1369,38 +1417,6 @@ BEGIN_TECH "Artificial Lightning" 10102
     REQUIRES        07403
     REQUIRES        10000
     COST            4000
-    MAX_SCIENTISTS  18
-    LAB             3
-END_TECH
-
-BEGIN_TECH "Solar Power" 10204
-    CATEGORY        3
-    DESCRIPTION     "Structure Factories may now produce Solar Power Array structure kits; Spaceports may now produce Solar Power Satellites. _______________________________________  The solar power system, comprised of a collector satellite and ground-based receiver, is an inexpensive alternative energy source.  The satellite, once in orbit, can be retargeted at a new ground location after an evacuation, and the receivers are much less volatile than our Tokamak fusion reactors."
-    TEASER          "Allows production of the Solar Power systems. _______________________________________  The technology behind solar power has been available for quite some time, the size of the solar collector panels needed to generate a significant amount of power has always been judged prohibitive, especially since our periodic evacuations began.  However, with the redevelopment of a space program, it is possible to build a solar collector satellite which beams the energy it collects to a ground-based receiver."
-    REQUIRES        10000
-    COST            3200
-    MAX_SCIENTISTS  18
-    LAB             3
-END_TECH
-
-BEGIN_TECH "Sensor Package" 10206
-    CATEGORY        12
-    DESCRIPTION     "Spaceports may now produce the Sensor Package. _______________________________________  Before we can depart the New Terra system, we must have a destination.  Our Sensor Package includes a Nanoprobe launcher, capable of sending thousands of microbe-sized probes toward potentially habitable planets, and a sensor/telemetry system which will evaluate the reports sent back by the Nanoprobes."
-    TEASER          "Allows production of the Sensor Package at the Spaceport. _______________________________________  A portion of the 'Conestoga's sensor suite was among the debris retrieved from the second crash site.  This appears to have been part of the telemetry system used to monitor the deep-space probes sent out to locate a suitable destination.  We believe we can use this as the basis for a similar system."
-    REQUIRES        10000
-    COST            3500
-    MAX_SCIENTISTS  18
-    LAB             3
-END_TECH
-
-BEGIN_TECH "Stasis Systems" 10208
-    CATEGORY        12
-    DESCRIPTION     "Spaceports may now produce the Stasis Systems. _______________________________________ The Stasis Systems contain suspended animation chambers for 200 colonists.  This module, like the Habitat Ring, is equipped with our superconductive magnetic coil radiation shield system."
-    TEASER          "Allows production of the Stasis Systems at the Spaceport. _______________________________________ The cold-sleep system used in the 'Conestoga' successfully slowed the metabolic rate of the colonists traveling from Earth to New Terra, but at the cost of shortening their lives once they had arrived.  Fortunately, our medical technology has advanced significantly since our arrival, and we believe we now have a method of inducing true suspended animation without the same loss of longevity."
-    REQUIRES        03303
-    REQUIRES        10205
-    REQUIRES        10000
-    COST            3500
     MAX_SCIENTISTS  18
     LAB             3
 END_TECH

@@ -120,7 +120,7 @@ void UnitGroup::RemoveDeadUnitsFromGroup()
 	while (i != unitsList.end())
 	{
 		// Unit is dead; remove it from the list.
-		if (!i->IsLive())
+		if (!i->IsLive() || i->unitID == 0 || !i->IsVehicle() || i->OwnerID() != X5AI::numAI)
 		{
 			unitsList.erase(i++);
 		}
@@ -145,7 +145,7 @@ void UnitGroup::CheckTargets()
 	int dist = 99999, temp;
 	for (std::list<UnitEx>::iterator i = X5AI::detectedUnits.begin(); i != X5AI::detectedUnits.end(); i++)
 	{
-		if (i->IsLive() && groupZone.CheckUnitInZone(*i))
+		if (i->IsLive() && i->unitID != 0 && (groupZone.CheckUnitInZone(*i) || (i->unitID == curTarget.unitID && curTarget.unitID != 0)))
 		{
 			if (temp = GetUnitToUnitDistance(avgLocation, i->Location()) < dist)
 			{
@@ -168,15 +168,21 @@ void UnitGroup::CheckTargets()
 			lastOrdersTick = -1;
 		}
 
-		else if (curTarget.unitID != 0 && closestUnit.unitID == curTarget.unitID)
+		else if (curTarget.unitID != 0)
 		{
-			if (dist <= X5AI::AI_CHASE_RANGE)
+			if (closestUnit.unitID == curTarget.unitID && dist <= X5AI::AI_CHASE_RANGE)
 			{
+				lastOrdersTick = TethysGame::Tick();
+			}
+
+			else if (dist < GetUnitToUnitDistance(avgLocation, curTarget.Location()) + 2 && dist <= X5AI::AI_CHASE_RANGE)
+			{
+				curTarget.unitID = closestUnit.unitID;
 				lastOrdersTick = TethysGame::Tick();
 			}
 		}
 
-		else if (dist < GetUnitToUnitDistance(avgLocation, curTarget.Location()) + 2 && dist <= X5AI::AI_CHASE_RANGE)
+		else if (dist <= X5AI::AI_CHASE_RANGE)
 		{
 			curTarget.unitID = closestUnit.unitID;
 			lastOrdersTick = TethysGame::Tick();
@@ -203,8 +209,8 @@ int UnitGroup::GetUnitToUnitDistance(LOCATION l1, LOCATION l2)
 
 void UnitGroup::CheckBlight()
 {
-	// Blight isn't even a threat until roughly mark 180, so do nothing until then.
-	if (TethysGame::Tick() < 18000 || leavingMap)
+	// Blight isn't even a threat until roughly mark 205, so do nothing until then.
+	if (TethysGame::Tick() < 20500 || leavingMap)
 	{
 		return;
 	}
@@ -238,33 +244,46 @@ void GuardWatchGroup::GroupStatusUpdate()
 			}
 			else
 			{
-				if (usingAlternate)
-				{
-					internalGroup.SetRect(guardRect[0]);
-				}
-				else
-				{
-					internalGroup.SetRect(guardRect[1]);
-				}
+				internalGroup.SetRect(guardRects[curWpt]);
 			}
 		}
 
 		else if (TethysGame::Tick() > (lastChangeTick + ticksToWait) && !leavingMap)
 		{
 			internalGroup.ClearGuarderdRects();
-			if (usingAlternate)
+			if (reverseCourse)
 			{
-				internalGroup.SetRect(guardRect[0]);
+				if (reversing)
+				{
+					curWpt--;
+				}
+				else
+				{
+					curWpt++;
+				}
+
+				if (curWpt == guardRects.size())
+				{
+					curWpt -= 2;
+					reversing = true;
+				}
+				else if (curWpt < 0)
+				{
+					curWpt += 2;
+					reversing = false;
+				}
+				internalGroup.SetRect(guardRects[curWpt]);
 			}
 			else
 			{
-				internalGroup.SetRect(guardRect[1]);
+				curWpt++;
+				curWpt %= guardRects.size();
+				internalGroup.SetRect(guardRects[curWpt]);
 			}
-			usingAlternate = !usingAlternate;
 			lastChangeTick = TethysGame::Tick();
 		}
 	}
-	else/* if (isActive && !wasActive)*/
+	else
 	{
 		if (curTarget.unitID != 0)	// Should be impossible, but a waste of a check is better than crashing
 		{
@@ -462,16 +481,22 @@ void X5AI::DetectPlayerUnits()
 	while (i != stealthedUnits.end())
 	{
 		// Unit is dead; remove it from the list.
-		if (!i->IsLive())
+		if (!i->IsLive() || i->unitID == 0 || !i->IsVehicle() || i->OwnerID() >= X5AI::numAI)
 		{
 			stealthedUnits.erase(i++);
 		}
 
 		else
 		{
-			// Lights are on or an AI unit spotted the unit, move it to the detected units list
-			if (i->GetLights() || AiUnitWithinRange(i->Location(), AI_DETECT_RANGE)) //&& i->GetType() != mapTiger /* debug */)
+			// Lights are on or an AI unit spotted the unit, move it to the detected units list (note: zone 7 is the area illuminated by the light tower)
+			if (i->GetLights() || AiUnitWithinRange(i->Location(), AI_DETECT_RANGE) || X5AI::zones[7].CheckUnitInZone(*i)) //&& i->GetType() != mapTiger /* debug */)
 			{
+				// Clear the "don't auto-aquire" flag
+				OP2Unit *internalUnit;
+				internalUnit = &(*unitArray)[i->unitID];
+				internalUnit->flags &= ~UNIT_HASSPECIALTARGET2;
+				internalUnit->flags &= ~UNIT_HASSPECIALTARGET;
+
 				detectedUnits.push_back(*i);
 				stealthedUnits.erase(i++);
 			}
@@ -492,17 +517,22 @@ void X5AI::ForgetPlayerUnits()
 	while (i != detectedUnits.end())
 	{
 		// Unit is dead; remove it from the list.
-		if (!i->IsLive())
+		if (!i->IsLive() || i->unitID == 0 || !i->IsVehicle() || i->OwnerID() >= X5AI::numAI)
 		{
 			detectedUnits.erase(i++);
 		}
 
 		else
 		{
-			Unit found;
 			// Lights are off and no AI units in range, remove from detected units list and add it back to the stealthed units list.
-			if (!i->GetLights() && !AiUnitWithinRange(i->Location(), AI_GIVEUP_RANGE))
+			if (!i->GetLights() && !AiUnitWithinRange(i->Location(), AI_GIVEUP_RANGE) && !X5AI::zones[7].CheckUnitInZone(*i))
 			{
+				// Reset the "don't auto acquire" flag.
+				OP2Unit *internalUnit;
+				internalUnit = &(*unitArray)[i->unitID];
+				internalUnit->flags |= UNIT_HASSPECIALTARGET2;
+				internalUnit->flags |= UNIT_HASSPECIALTARGET;
+
 				stealthedUnits.push_back(*i);
 				detectedUnits.erase(i++);
 			}
@@ -555,7 +585,18 @@ int X5AI::AiUnitWithinRange(LOCATION _l, int _r)
 			next.unitID = GameMapEx::GetTileEx(LOCATION(x,y)).unitIndex;
 			if (next.unitID != 0 && next.OwnerID() == X5AI::numAI)
 			{
-				return next.unitID;
+				// Helping hand: if a unit is only just in range, the AI only has a 5% chance of noticing (but remember this is called every 4 ticks!)
+				if ((abs(_l.x - x) + abs(_l.y - y)) >= _r)
+				{
+					if (TethysGame::GetRand(20) == 0)
+					{
+						return next.unitID;
+					}
+				}
+				else
+				{
+					return next.unitID;
+				}
 			}
 		}
 	}

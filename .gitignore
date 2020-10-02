@@ -5,3 +5,5 @@ Release
 *.user
 *.db
 .vs
+log.txt
+*.zip

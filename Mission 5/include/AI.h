@@ -3,7 +3,10 @@
 #include <Outpost2DLL.h>
 #include <OP2Helper.h>
 #include <HFL.h>
+#include <OP2Types\OP2Units.h>
+
 #include <list>
+#include <vector>
 
 // AI units are each assigned to a group, and each group is assigned to a map zone.
 // Groups can be in "active" or "idle" mode.  When active, they are pursuing a detected player unit.  When idle, they are standing ground or patrolling the map.
@@ -68,22 +71,49 @@ protected:
 class GuardWatchGroup : public UnitGroup
 {
 public:
-	GuardWatchGroup(int _pNo, MapZone _zone, MAP_RECT _rect1, MAP_RECT _rect2, int _waitTime) : UnitGroup(_pNo, _zone)
+	GuardWatchGroup(int _pNo, MapZone _zone, std::initializer_list<MAP_RECT> _rects, int _waitTime, int _startAt = 1, bool _reverseAtEnd = false) : UnitGroup(_pNo, _zone)
+	//GuardWatchGroup(int _pNo, MapZone _zone, MAP_RECT _rect1, MAP_RECT _rect2, int _waitTime) : UnitGroup(_pNo, _zone)
 	{
-		guardRect[0] = _rect1;
-		guardRect[1] = _rect2;
+		//guardRect[0] = _rect1;
+		//guardRect[1] = _rect2;
+		guardRects = _rects;
 		ticksToWait = _waitTime;
 		lastChangeTick = TethysGame::Tick();
-		internalGroup.SetRect(_rect2);
+		//internalGroup.SetRect(_rect2);
+		internalGroup.SetRect(guardRects[_startAt]);
+		curWpt = _startAt;
+		reverseCourse = _reverseAtEnd;
+
+		// Sanity/safety checks
+		if (_startAt >= guardRects.size())
+		{
+			TethysGame::AddMessage(-1, -1, "Error in GuardWatchGroup: startAt out of bounds!", -1, sndDirt);
+			curWpt = 0;
+		}
+		if (guardRects.size() == 1)
+		{
+			TethysGame::AddMessage(-1, -1, "Error in GuardWatchGroup: only 1 rect defined!", -1, sndDirt);
+			guardRects[1] = guardRects[0];
+		}
+		else if (guardRects.size() == 0)
+		{
+			TethysGame::AddMessage(-1, -1, "Error in GuardWatchGroup: no rects defined!", -1, sndDirt);
+			guardRects[0] = MAP_RECT(1 + 31, 1 - 1, 3 + 31, 3 - 1);
+			guardRects[1] = guardRects[0];
+		}
 	};
 
 	void GroupStatusUpdate();
 
 private:
-	MAP_RECT guardRect[2];
+	//MAP_RECT guardRect[2];
+	std::vector<MAP_RECT> guardRects;
 	int ticksToWait,
 		lastChangeTick;
-	bool usingAlternate = true;	// Start with them in "alternate" mode (but spawn them in their "regular" area) so when the mission starts they're moving around.
+	//bool usingAlternate = true;	// Start with them in "alternate" mode (but spawn them in their "regular" area) so when the mission starts they're moving around.
+	int curWpt;
+	bool reverseCourse,				// Normally, when reaching the end of its patrol route, the group will return to the first waypoint in the list.  If this is set, it will reverse course, going back to each waypoint until it reaches the first one again.
+		reversing;                  // Set if group is currently going backwards
 };
 
 // ----------------------------------------------------------------------------

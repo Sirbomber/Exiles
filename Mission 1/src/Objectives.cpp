@@ -96,7 +96,7 @@ void SetupFailure()
 	Trigger trig[4], group;
 	int i;
 
-	// Defeat (at least one player has no operational CCs)
+	// Defeat (no players have operational CCs)
 	for (i = 0; i < 4; i++)
 	{
 		if (i < numAI)

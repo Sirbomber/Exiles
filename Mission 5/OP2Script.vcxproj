@@ -73,14 +73,14 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <TargetName>mm4_x05</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release With Debug Info|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <TargetName>mm4_x05</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -182,7 +182,7 @@
     </Bscmake>
     <PostBuildEvent>
       <Message>Copying DLL to Outpost2 folder...</Message>
-      <Command>copy /Y "$(TargetPath)" "X:\Program Files (x86)\Sierra\Outpost2\$(TargetFileName)"</Command>
+      <Command>xcopy /y /d "$(TargetPath)" "C:\Sierra\Outpost 2 Divided Destiny\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release With Debug Info|Win32'">
@@ -234,7 +234,7 @@
     </Bscmake>
     <PostBuildEvent>
       <Message>Copying DLL to Outpost2 folder...</Message>
-      <Command>copy /Y "$(TargetPath)" "DRV:\path\to\Outpost2\$(TargetFileName)"</Command>
+      <Command>xcopy /y /d "$(TargetPath)" "C:\Sierra\Outpost 2 Divided Destiny\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

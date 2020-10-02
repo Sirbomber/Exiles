@@ -72,9 +72,6 @@ extern int numAI = -1;
 
 Export int InitProc()
 {
-    DoGameSetup();
-    DoRandomBases();
-
 	// Determine AI player number.
 	for (int i = 0; i < TethysGame::NoPlayers(); i++)
 	{
@@ -83,6 +80,9 @@ Export int InitProc()
 	        numAI = i;
 	    }
 	}
+
+	DoGameSetup();
+	DoRandomBases();
 
 	for (int i = 0; i < numAI; i++)
 	{

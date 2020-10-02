@@ -85,9 +85,13 @@ bool showZones = false;
 bool showMap = false;
 #endif
 
+// Used for victory/defeat conditions
+char string[100];
+int numETsNeeded = 0;
+
 Export int InitProc()
 {
-#ifdef  _DEBUG
+#ifdef _DEBUG
 	// For testing purposes only
 	for (int y = 0; y < 64; y++)
 	{
@@ -118,7 +122,6 @@ Export int InitProc()
 		// Give players the appropriate tech level.
 		SetMissionTechLevel(5, i);
 		
-
 		// Set alliances
 		Player[i].AllyWith(X5AI::numAI + 1);
 		Player[X5AI::numAI + 1].AllyWith(i);
@@ -172,6 +175,9 @@ Export int InitProc()
 	X5AI::zones[2].AddRectToZone(MAP_RECT(86 + 31, 53 - 1, 100 + 31, 56 - 1));
 	X5AI::zones[2].AddRectToZone(MAP_RECT(88 + 31, 57 - 1, 101 + 31, 63 - 1));
 	X5AI::zones[2].AddRectToZone(MAP_RECT(94 + 31, 51 - 1, 95 + 31, 52 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(67 + 31, 22 - 1, 83 + 31, 23 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(65 + 31, 24 - 1, 86 + 31, 31 - 1));
+	X5AI::zones[2].AddRectToZone(MAP_RECT(54 + 31, 32 - 1, 80 + 31, 37 - 1));
 
 	X5AI::zones[3].AddRectToZone(MAP_RECT(89 + 31, 1 - 1, 105 + 31, 33 - 1));
 	X5AI::zones[3].AddRectToZone(MAP_RECT(77 + 31, 10 - 1, 88 + 31, 19 - 1));
@@ -193,7 +199,7 @@ Export int InitProc()
 	X5AI::zones[3].AddRectToZone(MAP_RECT(106 + 31, 1 - 1, 120 + 31, 8 - 1));
 
 	X5AI::zones[4].AddRectToZone(MAP_RECT(99 + 31, 1 - 1, 143 + 31, 15 - 1));
-	X5AI::zones[4].AddRectToZone(MAP_RECT(144 + 31, 1 - 1, 145 + 31, 1 - 1));
+	X5AI::zones[4].AddRectToZone(MAP_RECT(144 + 31, 1 - 1, 146 + 31, 1 - 1));
 	X5AI::zones[4].AddRectToZone(MAP_RECT(110 + 31, 16 - 1, 143 + 31, 21 - 1));
 	X5AI::zones[4].AddRectToZone(MAP_RECT(114 + 31, 22 - 1, 140 + 31, 27 - 1));
 	X5AI::zones[4].AddRectToZone(MAP_RECT(123 + 31, 28 - 1, 130 + 31, 30 - 1));
@@ -214,18 +220,39 @@ Export int InitProc()
 	X5AI::zones[5].AddRectToZone(MAP_RECT(142 + 31, 23 - 1, 148 + 31, 28 - 1));
 	X5AI::zones[5].AddRectToZone(MAP_RECT(146 + 31, 6 - 1, 148 + 31, 22 - 1));
 
+	// ESG zone
 	X5AI::zones[6].AddRectToZone(MAP_RECT(169 + 31, 1 - 1, 256 + 31, 14 - 1));
 	X5AI::zones[6].AddRectToZone(MAP_RECT(175 + 31, 15 - 1, 256 + 31, 18 - 1));
+
+	// Light Tower detection zone
+	X5AI::zones[7].AddRectToZone(MAP_RECT(184 + 31, 43 - 1, 201 + 31, 52 - 1));
+	X5AI::zones[7].AddRectToZone(MAP_RECT(186 + 31, 41 - 1, 199 + 31, 42 - 1));
+	X5AI::zones[7].AddRectToZone(MAP_RECT(188 + 31, 39 - 1, 197 + 31, 40 - 1));
+	X5AI::zones[7].AddRectToZone(MAP_RECT(192 + 31, 38 - 1, 194 + 31, 38 - 1));
 	
 	// AI units
 	SetupHostilePatrols(X5AI::numAI);
 
-	CreateVictoryCondition(1, 1, CreateEscapeTrigger(1, 1, -1, 247 + 31, 9 - 1, 9, 9, 1, mapEvacuationTransport, mapAny, -1, "None"), "At least one Evacuation Transport must reach the rendezvous beacon at (251, 13).");
+	// Create victory condition
+	for (int i = 0; i < X5AI::numAI; i++)
+	{
+		numETsNeeded += Player[i].Difficulty();
+	}
+	if (numETsNeeded < 2)
+	{
+		numETsNeeded = 1;
+		CreateVictoryCondition(1, 1, CreateEscapeTrigger(1, 1, -1, 247 + 31, 9 - 1, 9, 9, 1, mapEvacuationTransport, mapAny, -1, "None"), "At least one Evacuation Transport must reach the rendezvous beacon at (251, 13).");
+	}
+	else
+	{
+		scr_snprintf(string, 100, "At least %d Evacuation Transports must reach the rendezvous beacon at (251, 13).", numETsNeeded);
+		CreateVictoryCondition(1, 1, CreateEscapeTrigger(1, 1, -1, 247 + 31, 9 - 1, 9, 9, numETsNeeded, mapEvacuationTransport, mapAny, -1, "None"), string);
+	}
 
 	SetVictoryAvi("MEBW.AVI");
 	SetDefeatAvi("MEBL.AVI");
 
-	CreateTimeTrigger(1, 1, 17000, "Sunrise");
+	CreateTimeTrigger(1, 1, 18700, "Sunrise");
 
 	// Force RCC effect
 	TethysGameEx::SetRCCEffect(rccForce);
@@ -267,27 +294,31 @@ Export void Intro2()
 		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 4 - 1), 0, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(14 + 31, 24 - 1));
 	}
 	if (Player[1].IsHuman())
 	{
-		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 7 - 1), 0, mapAtheistBuildingExplosion, 4);
+		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 7 - 1), 1, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(16 + 31, 24 - 1));
 	}
 	if (Player[2].IsHuman())
 	{
-		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 10 - 1), 0, mapAtheistBuildingExplosion, 4);
+		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 10 - 1), 2, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(18 + 31, 24 - 1));
 	}
 	if (Player[3].IsHuman())
 	{
-		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 13 - 1), 0, mapAtheistBuildingExplosion, 4);
+		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 13 - 1), 3, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(20 + 31, 24 - 1));
 	}
 
@@ -305,27 +336,31 @@ Export void Intro3()
 		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 4 - 1), 0, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(14 + 31, 23 - 1));
 	}
 	if (Player[1].IsHuman())
 	{
-		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 7 - 1), 0, mapAtheistBuildingExplosion, 4);
+		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 7 - 1), 1, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(16 + 31, 23 - 1));
 	}
 	if (Player[2].IsHuman())
 	{
-		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 10 - 1), 0, mapAtheistBuildingExplosion, 4);
+		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 10 - 1), 2, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(18 + 31, 23 - 1));
 	}
 	if (Player[3].IsHuman())
 	{
-		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 13 - 1), 0, mapAtheistBuildingExplosion, 4);
+		TethysGame::CreateUnit(Unit1, mapEvacuationTransport, LOCATION(19 + 31, 13 - 1), 3, mapAtheistBuildingExplosion, 4);
 		internalUnit = &(*unitArray)[Unit1.unitID];
 		internalUnit->flags &= ~UNIT_ISEDEN;
+		internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		Unit1.DoMove(LOCATION(20 + 31, 23 - 1));
 	}
 
@@ -337,7 +372,48 @@ Export void Intro3()
 	CreateCountTrigger(1, 1, TethysGame::LocalPlayer(), mapEvacuationTransport, mapAny, 0, cmpEqual, "LostEvacTrans2");
 
 	// Now that the convoy has spawned, set failure condition.
-	CreateFailureCondition(1, 1, CreateCountTrigger(1, 1, -1, mapEvacuationTransport, mapAny, 0, cmpEqual, "None"), "Convoy destroyed");
+	CreateTimeTrigger(1, 0, 10, "CheckFailure");
+	/*
+	Trigger trig[4], group;
+	int i;
+
+	for (i = 0; i < 4; i++)
+	{
+		if (i < X5AI::numAI)
+		{
+			trig[i] = CreateCountTrigger(1, 0, i, mapEvacuationTransport, mapAny, 0, cmpEqual, "None");
+		}
+		else
+		{
+			trig[i] = CreateResearchTrigger(0, 1, 5000, i, "None");
+		}
+	}
+	//group = CreateSetTrigger(1, 0, X5AI::numAI, X5AI::numAI, "None", trig[0], trig[1], trig[2], trig[3]);
+	//group = CreateCountTrigger(1, 0, -1, mapEvacuationTransport, mapAny, numETsNeeded, cmpLower, "None");
+	//CreateFailureCondition(1, 0, group, "Convoy destroyed");
+	*/
+}
+
+Export void CheckFailure()
+{
+	Unit Unit1;
+	int totalETs = 0;
+	for (int i = 0; i < X5AI::numAI; i++)
+	{
+		PlayerUnitEnum findETs(i);
+		while (findETs.GetNext(Unit1))
+		{
+			if (Unit1.IsLive() && Unit1.GetType() == mapEvacuationTransport)
+			{
+				totalETs++;
+			}
+		}
+	}
+
+	if (totalETs < numETsNeeded)
+	{
+		CreateFailureCondition(1, 1, CreateTimeTrigger(1, 1, 1, "None"), "Convoy destroyed");
+	}
 }
 
 Export void SpawnPlayerConvoy()
@@ -362,41 +438,35 @@ Export void SpawnPlayerConvoy()
 			}
 
 			// Spawn vehicles based on difficulty.
-			switch (Player[0].Difficulty())
+			switch (Player[i].Difficulty())
 			{
 			case 0:
-				// High: 4 Lynx, 2 Scouts
-				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(6 + 31, 42 - 1 + i), 0, mapNone, 0);
+				// High: 3 Lynx, 1 Scouts
+-				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(4 + 31, 42 - 1 + i), i, mapNone, 0);
 				Unit1.DoMove(LOCATION(22 + 31, 29 - 1 + (i * 2)));
-				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(5 + 31, 42 - 1 + i), 0, mapNone, 0);
-				Unit1.DoMove(LOCATION(21 + 31, 29 - 1 + (i * 2)));
 
-				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(4 + 31, 42 - 1 + i), 0, weapon, 0);
-				Unit1.DoMove(LOCATION(18 + 31, 29 - 1 + (i * 2)));
-				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(3 + 31, 42 - 1 + i), 0, weapon, 0);
-				Unit1.DoMove(LOCATION(17 + 31, 29 - 1 + (i * 2)));
-				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(2 + 31, 42 - 1 + i), 0, weapon, 0);
-				Unit1.DoMove(LOCATION(16 + 31, 29 - 1 + (i * 2)));
-				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(1 + 31, 42 - 1 + i), 0, weapon, 0);
-				Unit1.DoMove(LOCATION(15 + 31, 29 - 1 + (i * 2)));
+				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(3 + 31, 42 - 1 + i), i, weapon, 0);
+				Unit1.DoMove(LOCATION(21 + 31, 29 - 1 + (i * 2)));
+				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(2 + 31, 42 - 1 + i), i, weapon, 0);
+				Unit1.DoMove(LOCATION(20 + 31, 29 - 1 + (i * 2)));
+				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(1 + 31, 42 - 1 + i), i, weapon, 0);
+				Unit1.DoMove(LOCATION(19 + 31, 29 - 1 + (i * 2)));
 				break;
 			case 1:
-				// Medium: 2 Lynx, 2 Scouts
-				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(4 + 31, 42 - 1 + i), 0, mapNone, 0);
+				// Medium: 2 Lynx, 1 Scout
+				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(3 + 31, 42 - 1 + i), i, mapNone, 0);
 				Unit1.DoMove(LOCATION(22 + 31, 29 - 1 + (i * 2)));
-				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(3 + 31, 42 - 1 + i), 0, mapNone, 0);
-				Unit1.DoMove(LOCATION(21 + 31, 29 - 1 + (i * 2)));
 
-				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(2 + 31, 42 - 1 + i), 0, weapon, 0);
-				Unit1.DoMove(LOCATION(18 + 31, 29 - 1 + (i * 2)));
-				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(1 + 31, 42 - 1 + i), 0, weapon, 0);
-				Unit1.DoMove(LOCATION(17 + 31, 29 - 1 + (i * 2)));
+				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(2 + 31, 42 - 1 + i), i, weapon, 0);
+				Unit1.DoMove(LOCATION(21 + 31, 29 - 1 + (i * 2)));
+				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(1 + 31, 42 - 1 + i), i, weapon, 0);
+				Unit1.DoMove(LOCATION(20 + 31, 29 - 1 + (i * 2)));
 				break;
 			case 2:
-				// Low: 2 Scouts
-				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(2 + 31, 42 - 1 + i), 0, mapNone, 0);
+				// Low: 1 Lynx, 1 Scout
+				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(2 + 31, 42 - 1 + i), i, mapNone, 0);
 				Unit1.DoMove(LOCATION(22 + 31, 29 - 1 + (i * 2)));
-				TethysGame::CreateUnit(Unit1, mapScout, LOCATION(1 + 31, 42 - 1 + i), 0, mapNone, 0);
+				TethysGame::CreateUnit(Unit1, mapLynx, LOCATION(1 + 31, 42 - 1 + i), i, weapon, 0);
 				Unit1.DoMove(LOCATION(21 + 31, 29 - 1 + (i * 2)));
 				break;
 			}
@@ -411,6 +481,12 @@ Export void SpawnPlayerConvoy()
 		if (Unit1.IsVehicle() && Unit1.IsLive() && Unit1.OwnerID() < X5AI::numAI)
 		{
 			X5AI::stealthedUnits.push_back(Unit1);
+
+			// Setting this flag will prevent the AI from auto-firing on undetected units.
+			OP2Unit *internalUnit;
+			internalUnit = &(*unitArray)[Unit1.unitID];
+			internalUnit->flags |= UNIT_HASSPECIALTARGET2;
+			internalUnit->flags |= UNIT_HASSPECIALTARGET;
 		}
 	}
 }
@@ -438,7 +514,7 @@ Export void Blight()
 	GameMap::SetVirusUL(LOCATION(3 + 31, 45 - 1), 1);
 	GameMap::SetVirusUL(LOCATION(4 + 31, 43 - 1), 1);
 	GameMap::SetVirusUL(LOCATION(4 + 31, 44 - 1), 1);
-	TethysGame::SetMicrobeSpreadSpeed(180);
+	TethysGame::SetMicrobeSpreadSpeed(185);
 	TethysGame::AddMessage((2 + 31) * 32, (int)(42.5 * 32), "Microbe growth detected!", -1, sndSavnt278);
 
 	CreatePointTrigger(1, 0, X5AI::numAI, 256 + 31, 63 - 1, "AiUnitsEscape");
@@ -450,7 +526,7 @@ Export void AiUnitsEscape()
 	InRectEnumerator AtEdge(MAP_RECT(255 + 31, 63 - 1, 257 + 31, 64 - 1));
 	while (AtEdge.GetNext(Unit1))
 	{
-		if (Unit1.OwnerID() == X5AI::numAI)
+		if (Unit1.OwnerID() == X5AI::numAI && Unit1.IsLive())
 		{
 			Unit1.DoPoof();
 		}
