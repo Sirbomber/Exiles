@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exiles Co-op 4", "OP2Script.vcxproj", "{371F4704-3EB9-48BE-B94E-0C0B8F17AAF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release With Debug Info|Win32 = Release With Debug Info|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{371F4704-3EB9-48BE-B94E-0C0B8F17AAF9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{371F4704-3EB9-48BE-B94E-0C0B8F17AAF9}.Debug|Win32.Build.0 = Debug|Win32
+		{371F4704-3EB9-48BE-B94E-0C0B8F17AAF9}.Release With Debug Info|Win32.ActiveCfg = Release With Debug Info|Win32
+		{371F4704-3EB9-48BE-B94E-0C0B8F17AAF9}.Release With Debug Info|Win32.Build.0 = Release With Debug Info|Win32
+		{371F4704-3EB9-48BE-B94E-0C0B8F17AAF9}.Release|Win32.ActiveCfg = Release|Win32
+		{371F4704-3EB9-48BE-B94E-0C0B8F17AAF9}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB9D5E53-A56F-43EB-8752-92D12274E280}
+	EndGlobalSection
+EndGlobal
