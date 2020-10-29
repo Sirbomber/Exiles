@@ -245,7 +245,19 @@ Export int InitProc()
 	}
 	else
 	{
-		scr_snprintf(string, 100, "At least %d Evacuation Transports must reach the rendezvous beacon at (251, 13).", numETsNeeded);
+		// "All 2" sounds wrong so for single player on hard difficulty say "both"
+		if (numETsNeeded == 2 && X5AI::numAI == 1)
+		{
+			scr_snprintf(string, 100, "Both Evacuation Transports must reach the rendezvous beacon at (251, 13).", numETsNeeded);
+		}
+		else if (numETsNeeded >= X5AI::numAI * 2)
+		{
+			scr_snprintf(string, 100, "All %d Evacuation Transports must reach the rendezvous beacon at (251, 13).", numETsNeeded);
+		}
+		else
+		{
+			scr_snprintf(string, 100, "At least %d Evacuation Transports must reach the rendezvous beacon at (251, 13).", numETsNeeded);
+		}
 		CreateVictoryCondition(1, 1, CreateEscapeTrigger(1, 1, -1, 247 + 31, 9 - 1, 9, 9, numETsNeeded, mapEvacuationTransport, mapAny, -1, "None"), string);
 	}
 
@@ -373,25 +385,6 @@ Export void Intro3()
 
 	// Now that the convoy has spawned, set failure condition.
 	CreateTimeTrigger(1, 0, 10, "CheckFailure");
-	/*
-	Trigger trig[4], group;
-	int i;
-
-	for (i = 0; i < 4; i++)
-	{
-		if (i < X5AI::numAI)
-		{
-			trig[i] = CreateCountTrigger(1, 0, i, mapEvacuationTransport, mapAny, 0, cmpEqual, "None");
-		}
-		else
-		{
-			trig[i] = CreateResearchTrigger(0, 1, 5000, i, "None");
-		}
-	}
-	//group = CreateSetTrigger(1, 0, X5AI::numAI, X5AI::numAI, "None", trig[0], trig[1], trig[2], trig[3]);
-	//group = CreateCountTrigger(1, 0, -1, mapEvacuationTransport, mapAny, numETsNeeded, cmpLower, "None");
-	//CreateFailureCondition(1, 0, group, "Convoy destroyed");
-	*/
 }
 
 Export void CheckFailure()
@@ -485,8 +478,8 @@ Export void SpawnPlayerConvoy()
 			// Setting this flag will prevent the AI from auto-firing on undetected units.
 			OP2Unit *internalUnit;
 			internalUnit = &(*unitArray)[Unit1.unitID];
-			internalUnit->flags |= UNIT_HASSPECIALTARGET2;
 			internalUnit->flags |= UNIT_HASSPECIALTARGET;
+			Unit1.SetOppFiredUpon(1);
 		}
 	}
 }

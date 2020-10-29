@@ -73,6 +73,9 @@ void SetupHostilePatrols(int pNo)
 	Player[pNo].MarkResearchComplete(5111);	// Independent Turret Power Systems
 	Player[pNo].MarkResearchComplete(5601);	// Heat Dissipation Systems (P)
 	Player[pNo].MarkResearchComplete(5318);	// Robotic Image Processing
+	
+	// Test
+	//unitInfoArray[mapMicrowave]->playerData[pNo].sightRange = 8;
 
 	// Setup units and groups
 	UnitEx Unit1;

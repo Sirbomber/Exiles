@@ -27,6 +27,18 @@ void SetMissionTechLevel(int mission, int player)
 	// Player[player].MarkResearchComplete();
 	switch (mission)
 	{
+		case 7:
+			// Automatically give Mission 6's research topics.
+			Player[player].MarkResearchComplete(8000);		// Mission 6 enabler tech
+			Player[player].MarkResearchComplete(8201);		// Dual-Turret Weapons Systems
+			Player[player].MarkResearchComplete(10204);		// Solar Power
+			Player[player].MarkResearchComplete(10206);		// Sensor Package
+			Player[player].MarkResearchComplete(10208);		// Stasis Systems
+
+			// Also give the starship components and satellites the player should have.
+			ExtPlayer[player].SetSatelliteCount(mapSolarSatellite, 2);
+			ExtPlayer[player].SetSatelliteCount(mapSensorPackage, 1);
+			ExtPlayer[player].SetSatelliteCount(mapStasisSystems, 1);
 		case 6:
 			// Mission 5 is a unit mission; no research to give.
 		case 5:
@@ -37,8 +49,6 @@ void SetMissionTechLevel(int mission, int player)
 			Player[player].MarkResearchComplete(8003);		// Fueling Systems enabler tech
 			Player[player].MarkResearchComplete(8004);		// Command Module enabler tech
 			Player[player].MarkResearchComplete(8005);		// Habitat Ring enabler tech
-			Player[player].MarkResearchComplete(6107);		// Magnetohydrodynamics
-			Player[player].MarkResearchComplete(6115);		// Geothermal Power
 			Player[player].MarkResearchComplete(6405);		// Space Program
 			Player[player].MarkResearchComplete(8601);		// Skydock
 			Player[player].MarkResearchComplete(8801);		// Ion Drive Module
@@ -53,12 +63,14 @@ void SetMissionTechLevel(int mission, int player)
 			Player[player].MarkResearchComplete(8306);		// Enhanced Defensive Fortifications
 			if (Player[player].IsEden())
 			{
+				Player[player].MarkResearchComplete(6115);	// Geothermal Power
 				Player[player].MarkResearchComplete(7213);	// Advanced Robotic Manipulator Arm (E)
 				Player[player].MarkResearchComplete(7403);	// Increased Capacitance Circuitry
 				Player[player].MarkResearchComplete(8104);	// Expanded Housing
 			}
 			else
 			{
+				Player[player].MarkResearchComplete(6107);	// Magnetohydrodynamics
 				Player[player].MarkResearchComplete(7214);	// Advanced Robotic Manipulator Arm (P)
 				Player[player].MarkResearchComplete(8105);	// Disaster-Resistant Housing
 				Player[player].MarkResearchComplete(7104);	// Arachnid Weaponry

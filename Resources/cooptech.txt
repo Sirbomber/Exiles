@@ -1157,7 +1157,7 @@ END_TECH
 ;
 ;******************************************************************************
 
-;BEGIN_TECH "There's nothing here" 05555
+BEGIN_TECH "There's nothing here" 05555
     CATEGORY        1
     DESCRIPTION     "No, really.  There's nothing."
     TEASER          "Why are you still reading this?"
@@ -1168,20 +1168,22 @@ END_TECH
 ; Mission 6
 ;
 ;By the end of the mission, these technologies must have been researched:
+;05303 Severe Atmospheric Disturbances
 ;08201 Dual-Turret Weapons Systems
-;08401 Blight-Resistant Isotopes
 ;10204 Solar Power
 ;10206 Sensor Package
 ;10208 Stasis Systems
 ;
+; Note: There's an oddity in the way OP2 calculates research topic duration.
+; The list of available techs is based on your colony, but the research cost
+; is based on the setting of the "is Eden" flag of the researching lab.
+; So if you're playing as Plymouth but researching a Plymouth-only tech
+; at an Eden lab, it will have a duration of -1 and finish instantly.
+; This severely limits the techs available for research on this mission (unless Arklon fixes it).
+;
 ;******************************************************************************
 
-; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
-; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
-; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
-; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
-; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
-; *** REMEMBER TO REPLACE THESE TECHS WITH THEIR MULTITEK EQUIVALENTS AND ADD ANY MISSING PLYMOUTH-ONLY TECHS!!!!! ***
+; ** Remember to port in missing Plymouth techs!
 
 BEGIN_TECH "Tech Level 8" 08000
     CATEGORY        0
@@ -1212,38 +1214,6 @@ BEGIN_TECH "Smelter Postprocessing" 07203
     UNIT_PROP SMELTER_ADV Improved 1
 END_TECH 
 
-BEGIN_TECH "Meteor-Watch Observatory" 08051
-    CATEGORY        8
-    DESCRIPTION     "Structure Factories may now produce Observatory structure kits. _______________________________________ Deployment of the Observatory structure will allow us at least a minimal amount of warning of meteorite impacts in the area of our colony.  The Observatory incorporates a wide-field optical telescope with a sophisticated tracking system to allow us to project the path of incoming meteors."
-    TEASER          "Allows production of Observatory structure kits at the Structure Factory. _______________________________________ After the recent meteorite impacts, our observations have found that more are to come.  New Terra is entering a field of debris, probably caused by the collision of two asteroids.  We need a way to track this debris so we can have some advance warning of meteorite impacts."
-    REQUIRES        08000
-    COST            1800
-    MAX_SCIENTISTS  12
-    LAB             2
-END_TECH
-
-BEGIN_TECH "Magma Refining" 08103
-    CATEGORY        6
-    DESCRIPTION     "Robo-Miners may now deploy as Magma Wells.  Robo-Miner production cost increased.  _______________________________________ Using the same basic configuration as our Mines, we have created a process of extracting and cooling magma from magma vents.  The product of this process is a steady supply of Rare Ores, with a constant yield of 100 units of Rare Metals."
-    TEASER          "Allows Robo-Miners to deploy as Magma Wells. _______________________________________ Initial observations of the magma vents that have begun to appear on the New Terran surface indicate that the magma is rich in Rare Metals.  If we could develop a method of safely using this magma, it would greatly increase our supply of this resource."
-    IMPROVE_DESC    "Can build Magma Wells"
-    REQUIRES        08000
-    COST            3200
-    MAX_SCIENTISTS  16
-    LAB             3
-    UNIT_PROP MINER Common_Required 800
-END_TECH
-
-BEGIN_TECH "High-Energy Ray-Composite Projector" 08106
-    CATEGORY        10
-    DESCRIPTION     "Structure Factories may now produce Meteor Defense structure kits. _______________________________________ The High-Energy Ray-Composite (HERC) Projector is now functional.  Although the equipment needed to produce this energy/particle beam is far too massive for use in a weapons turret, it is ideal for use as a meteor defense.  Using the tracking capabilities of the Observatory, the HERC beam can destroy even the largest meteors with a single shot---if it hits its target."
-    TEASER          "Allows production of Meteor Defense structure kits at the Structure Factory. _______________________________________ Some very ambitious high-energy physicists have submitted a proposal for an energy weapon.  Their theory combines both microwave and laser projection with a particle beam projector."
-    REQUIRES        08051
-    COST            4000
-    MAX_SCIENTISTS  18
-    LAB             2
-END_TECH
-
 BEGIN_TECH "Dual-Turret Weapons Systems" 08201
     CATEGORY        4
     DESCRIPTION     "Vehicle Factories may now produce Tigers.  _______________________________________ The dual-turret weapons systems are capable of twice the effective rate-of-fire of their single-turret predecessors, but duplicate only 70% of the components, sharing certain support systems.  Due to their size, they can only be mounted on the Tiger heavy combat chassis, a tracked vehicle based on the Earthworker and Robo-Dozer designs."
@@ -1261,6 +1231,7 @@ BEGIN_TECH "Efficiency Engineering" 08301
     TEASER          "Reduces production time at all factories. _______________________________________ All of our factories use a similar assembly-line method of production.  Some of our factory workers, reading through the databases of industrial engineering techniques from Earth, have proposed a study of our factories, to look for possible increases in manufacturing efficiency."
     IMPROVE_DESC    "Improved production rate"
     REQUIRES        05101
+    REQUIRES        05405
     REQUIRES        08000
     EDEN_COST       4000
     PLYMOUTH_COST   -1
@@ -1290,20 +1261,6 @@ BEGIN_TECH "Efficiency Engineering" 08302
     UNIT_PROP SPACEPORT Production_Capacity 96
 END_TECH
 
-
-BEGIN_TECH "Heat Mining" 08304
-    CATEGORY        3
-    DESCRIPTION     "Geothermal Plant Power output increased.  _______________________________________ Our Heat Mining project has met with limited success.  We have not been able to develop a viable geothermal plant that can be deployed away from fumaroles, but by injecting cold water into the fumarole, we have been able to increase the output of our Geothermal plants."
-    TEASER          "Increases Geothermal Plant Power output.  _______________________________________ Our Geothermal Plants rely on the molten salts and gasses found in fumaroles to generate power.  Heat Mining, or Hot Dry Rock geothermal power generation, may allow us to place Geothermal Plants in places without fumaroles by injecting cold water into deep bore wells, then capturing the steam produced when the water reaches the hot rocks in the New Terran surface."
-    IMPROVE_DESC    "Increased Power output"
-    REQUIRES        06115
-    REQUIRES        08000
-    COST            1600
-    MAX_SCIENTISTS  10
-    LAB             2
-    UNIT_PROP GEOTHERMAL Production_Capacity 650
-END_TECH
-
 BEGIN_TECH "Reinforced Panther Construction" 08309
     CATEGORY        4
     DESCRIPTION     "Panther Hit Points increased; Panther production costs changed.  _______________________________________  A redesign of the Panther using a new composite alloy has increased the durability of this combat chassis."
@@ -1323,27 +1280,6 @@ BEGIN_TECH "Meteor detection" 08317
     CATEGORY        0
     REQUIRES        08051
     COST            0
-END_TECH
-
-BEGIN_TECH "Blight-Resistant Isotopes" 08401
-    CATEGORY        2
-    DESCRIPTION     "Earthworkers may now deploy Microbe Walls. _______________________________________  We have isolated the particular isotope that affects the Blight.  Unfortunately, the isotope has a short half-life, and is difficult to produce in large quantities.  However, we have modified the Earthworker to build temporary barriers against the Blight.  These barriers will not permanently destroy the microbe, but may buy us extra time for evacuations."
-    TEASER          "Allows Earthworkers to deploy Microbe Walls. _______________________________________  During a recent evacuation, a minor accident at a Tokamak revealed a potential method of dealing with the Blight.  Destabilized by an earthquake, the Tokamak exploded and released an unusual waste product--an isotope that seemed to retard the growth of the Blight!"
-    REQUIRES        03303
-    REQUIRES        08000
-    COST            2000
-    MAX_SCIENTISTS  14
-    LAB             3
-END_TECH
-
-BEGIN_TECH "Acid Weaponry" 08503
-    CATEGORY        7
-    DESCRIPTION     "The Acid Cloud weapon is now available.  _______________________________________ Our Acid Cloud turrets fire a projectile which releases a cloud of corrosive acid that can eat through even the toughest armor.  The cloud dissolves after a brief period, but any target caught within the cloud will take heavy damage."
-    TEASER          "Makes the Acid Cloud weapon available.  _______________________________________ Our Common Ore Smelters produce a number of toxic byproducts during the processing of Common Ore into Common Metals.  We believe we can use these wastes in a new weapons system."
-    REQUIRES        08103
-    COST            3500
-    MAX_SCIENTISTS  16
-    LAB             3
 END_TECH
 
 BEGIN_TECH "Solar Power" 10204
@@ -1379,13 +1315,102 @@ BEGIN_TECH "Stasis Systems" 10208
 END_TECH
 
 ;******************************************************************************
-;Tech Level 9 / Mission 9
+; Mission 7
+;
+;By the end of the mission, these technologies must have been researched:
+;08401 Blight-Resistant Isotopes
+;
 ;******************************************************************************
 
 BEGIN_TECH "09000 Tech Level 9" 09000
     CATEGORY        0
     COST            -1
 END_TECH
+
+; Unresearchable tech - given by mission script to allow Microbe Wall research
+BEGIN_TECH "Enable Microbe Walls" 09001
+    CATEGORY        0
+    DESCRIPTION     "This space intentionally left blank."
+    TEASER          "This space intentionally left blank."
+    REQUIRES        09000
+    COST            3
+    MAX_SCIENTISTS  1
+    LAB             1
+END_TECH
+
+BEGIN_TECH "Blight-Resistant Isotopes" 08401
+    CATEGORY        2
+    DESCRIPTION     "Earthworkers may now deploy Microbe Walls. _______________________________________  We have isolated the particular isotope that affects the Blight.  Unfortunately, the isotope has a short half-life, and is difficult to produce in large quantities.  However, we have modified the Earthworker to build temporary barriers against the Blight.  These barriers will not permanently destroy the microbe, but may buy us extra time for evacuations."
+    TEASER          "Allows Earthworkers to deploy Microbe Walls. _______________________________________  Although we were able to acquire Eden's counteragent research, we lack the expertise to act upon much of it.  Analysis of the data indicates an early Eden experiment involved using radioactive isotopes to temporarily retard the growth of the microbe.  Although such a localized countermeasure was rejected by Eden's leadership, this may be just the edge we need in our fight for survival."
+    REQUIRES        03303
+    REQUIRES        09001
+    COST            2400
+    MAX_SCIENTISTS  16
+    LAB             3
+END_TECH
+
+BEGIN_TECH "Heat Mining" 08304
+    CATEGORY        3
+    DESCRIPTION     "Geothermal Plant Power output increased.  _______________________________________ Our Heat Mining project has met with limited success.  We have not been able to develop a viable geothermal plant that can be deployed away from fumaroles, but by injecting cold water into the fumarole, we have been able to increase the output of our Geothermal plants."
+    TEASER          "Increases Geothermal Plant Power output.  _______________________________________ Our Geothermal Plants rely on the molten salts and gasses found in fumaroles to generate power.  Heat Mining, or Hot Dry Rock geothermal power generation, may allow us to place Geothermal Plants in places without fumaroles by injecting cold water into deep bore wells, then capturing the steam produced when the water reaches the hot rocks in the New Terran surface."
+    IMPROVE_DESC    "Increased Power output"
+    REQUIRES        06115
+    REQUIRES        09000
+    COST            1600
+    MAX_SCIENTISTS  10
+    LAB             2
+    UNIT_PROP GEOTHERMAL Production_Capacity 650
+END_TECH
+
+BEGIN_TECH "Magma Refining" 08103
+    CATEGORY        6
+    DESCRIPTION     "Robo-Miners may now deploy as Magma Wells.  Robo-Miner production cost increased.  _______________________________________ Using the same basic configuration as our Mines, we have created a process of extracting and cooling magma from magma vents.  The product of this process is a steady supply of Rare Ores, with a constant yield of 100 units of Rare Metals."
+    TEASER          "Allows Robo-Miners to deploy as Magma Wells. _______________________________________ Initial observations of the magma vents that have begun to appear on the New Terran surface indicate that the magma is rich in Rare Metals.  If we could develop a method of safely using this magma, it would greatly increase our supply of this resource."
+    IMPROVE_DESC    "Can build Magma Wells"
+    REQUIRES        09000
+    COST            3200
+    MAX_SCIENTISTS  16
+    LAB             3
+    UNIT_PROP MINER Common_Required 800
+END_TECH
+
+BEGIN_TECH "Meteor-Watch Observatory" 08051
+    CATEGORY        8
+    DESCRIPTION     "Structure Factories may now produce Observatory structure kits. _______________________________________ Deployment of the Observatory structure will allow us at least a minimal amount of warning of meteorite impacts in the area of our colony.  The Observatory incorporates a wide-field optical telescope with a sophisticated tracking system to allow us to project the path of incoming meteors."
+    TEASER          "Allows production of Observatory structure kits at the Structure Factory. _______________________________________ After the recent meteorite impacts, our observations have found that more are to come.  New Terra is entering a field of debris, probably caused by the collision of two asteroids.  We need a way to track this debris so we can have some advance warning of meteorite impacts."
+    REQUIRES        09000
+    EDEN_COST       1800
+	PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  12
+    LAB             2
+END_TECH
+
+BEGIN_TECH "Acid Weaponry" 08503
+    CATEGORY        7
+    DESCRIPTION     "The Acid Cloud weapon is now available.  _______________________________________ Our Acid Cloud turrets fire a projectile which releases a cloud of corrosive acid that can eat through even the toughest armor.  The cloud dissolves after a brief period, but any target caught within the cloud will take heavy damage."
+    TEASER          "Makes the Acid Cloud weapon available.  _______________________________________ Our Common Ore Smelters produce a number of toxic byproducts during the processing of Common Ore into Common Metals.  We believe we can use these wastes in a new weapons system."
+    REQUIRES        08103
+    COST            3500
+    MAX_SCIENTISTS  16
+    LAB             3
+END_TECH
+
+BEGIN_TECH "High-Energy Ray-Composite Projector" 08106
+    CATEGORY        10
+    DESCRIPTION     "Structure Factories may now produce Meteor Defense structure kits. _______________________________________ The High-Energy Ray-Composite (HERC) Projector is now functional.  Although the equipment needed to produce this energy/particle beam is far too massive for use in a weapons turret, it is ideal for use as a meteor defense.  Using the tracking capabilities of the Observatory, the HERC beam can destroy even the largest meteors with a single shot---if it hits its target."
+    TEASER          "Allows production of Meteor Defense structure kits at the Structure Factory. _______________________________________ Some very ambitious high-energy physicists have submitted a proposal for an energy weapon.  Their theory combines both microwave and laser projection with a particle beam projector."
+    REQUIRES        08051
+    REQUIRES        09000
+    COST            4000
+    MAX_SCIENTISTS  18
+    LAB             2
+END_TECH
+
+;******************************************************************************
+;Tech Level 9 / Mission 9
+;******************************************************************************
+
+
 
 ;******************************************************************************
 ;Tech Level 10 / Mission 10
@@ -1394,6 +1419,39 @@ END_TECH
 BEGIN_TECH "10000 Tech Level 10" 10000
     CATEGORY        0
     COST            -1
+END_TECH
+
+BEGIN_TECH "Extended-Range Projectile Launcher" 07211
+    CATEGORY        7
+    DESCRIPTION     "EMP and Acid Cloud ranges increased. _______________________________________  The redesigned launch mechanism used in both of these weapons has lengthened the maximum range of these weapons."
+    TEASER          "Increases EMP and Acid Cloud ranges. _______________________________________  Our after-action equipment performance reports show a weakness in the launch mechanism used in our EMP and Acid Cloud weapons turrets.  Though this weakness does not cause an equipment failure, our engineers would like to revisit the design of this launcher."
+    IMPROVE_DESC    "Increased range"
+    REQUIRES        05508
+    REQUIRES        08503
+    EDEN_COST       4000
+    PLYMOUTH_COST   -1
+    MAX_SCIENTISTS  18
+    LAB             3
+    UNIT_PROP ACID Sight_Range 7
+    UNIT_PROP EMP Sight_Range 7
+END_TECH
+
+BEGIN_TECH "Extended-Range Projectile Launcher" 07212
+    CATEGORY        7
+    DESCRIPTION     "EMP, StickyFoam, and ESG ranges increased. _______________________________________  The redesigned launch mechanism used in both of these weapons has lengthened the maximum range of these weapons."
+    TEASER          "Increases EMP, StickyFoam, and ESG ranges. _______________________________________  Our after-action equipment performance reports show a weakness in the launch mechanism used in our EMP, ESG, and StickyFoam weapons turrets.  Though this weakness does not cause an equipment failure, our engineers would like to revisit the design of this launcher."
+    IMPROVE_DESC    "Increased range"
+    REQUIRES        05202
+    REQUIRES        05508
+    REQUIRES        07103
+	REQUIRES        10000
+    EDEN_COST       -1
+    PLYMOUTH_COST   4500
+    MAX_SCIENTISTS  14
+    LAB             3
+    UNIT_PROP FOAM Sight_Range 6
+    UNIT_PROP EMP Sight_Range 7
+    UNIT_PROP SPAM Sight_Range 6
 END_TECH
 
 BEGIN_TECH "Extended-Range Projectile Launcher" 07212
