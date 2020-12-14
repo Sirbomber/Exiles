@@ -37,12 +37,11 @@ BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
 	if (fdwReason == DLL_PROCESS_ATTACH)
 	{
-		DisableThreadLibraryCalls(hinstDLL);
 		g_hInst = hInstDLL = hinstDLL;				// This needs to get set for cutscenes to properly blank out the rest of the window at mission end.
 
 		if (HFLInit() == HFLCANTINIT
 			|| !SetMissionEndHook(true, MissionEnd)
-			|| !SetNukePatch(true)
+			//|| !SetNukePatch(true)
 			|| !SetMessageHook(true, ProcessChatCommands))
 		{
 			return false;
@@ -54,7 +53,7 @@ BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 		LockWindowUpdate(NULL);
 
 		SetMissionEndHook(false, NULL);
-		SetNukePatch(false);
+		//SetNukePatch(false);
 		SetMessageHook(false, NULL);
 
 		HFLCleanup();

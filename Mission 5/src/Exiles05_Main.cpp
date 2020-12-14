@@ -43,7 +43,7 @@ BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 		if (HFLInit() == HFLCANTINIT
 			|| !SetMissionEndHook(true, MissionEnd)
-			|| !SetNukePatch(true)
+			//|| !SetNukePatch(true)
 			|| !SetMessageHook(true, ProcessChatCommands))
 		{
 			return false;
@@ -56,7 +56,7 @@ BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 		LockWindowUpdate(NULL);
 
 		SetMissionEndHook(false, NULL);
-		SetNukePatch(false);
+		//SetNukePatch(false);
 		SetMessageHook(false, NULL);
 
 		HFLCleanup();

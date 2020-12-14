@@ -7,3 +7,4 @@ Release
 .vs
 log.txt
 *.zip
+/REJECT Mission 6
