@@ -1,6 +1,3 @@
-#ifndef EXILES_03_AI
-#define EXILES_03_AI
+#pragma once
 
 void SetupAI();
-
-#endif

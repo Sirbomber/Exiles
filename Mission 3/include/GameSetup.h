@@ -1,8 +1,5 @@
-#ifndef EXILES_03_SETUP
-#define EXILES_03_SETUP
+#pragma once
 
 void DoGameSetup();
 
 void SetupDisasters();
-
-#endif

@@ -1,1 +1,0 @@
-[NetFix] ProtocolIndex = 4

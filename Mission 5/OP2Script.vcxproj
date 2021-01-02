@@ -256,7 +256,6 @@
     <ClInclude Include="..\Common\include\SaveLoad.h" />
     <ClInclude Include="include\AI.h" />
     <ClInclude Include="include\Bases.h" />
-    <ClInclude Include="include\ExtLocation.h" />
     <ClInclude Include="include\GameSetup.h" />
     <ClInclude Include="include\Objectives.h" />
   </ItemGroup>

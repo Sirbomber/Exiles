@@ -1,7 +1,4 @@
-#ifndef EXILES_03_OBJECTIVES
-#define EXILES_03_OBJECTIVES
+#pragma once
 
 void SetupVictory(int pAI);
 void SetupFailure(int pAI);
-
-#endif
