@@ -1,0 +1,38 @@
+Commanders,
+
+We have suffered a major setback: the Eden outpost you recently liberated has been completely destroyed by a
+massive Plymouth attack force.  We have reason to believe the attack was specifically targetting us, not Eden, and
+had to do with our use of the colony as a launching site for our space program.  It seems Plymouth has developed a
+way to quickly track the source of our launches.  We have not been able to identify any new satellites in orbit that
+would explain this capability.  Until we can stop, or find a way to delay, their launch tracking program, we must
+cease all development of our starship; it's simply too dangerous, and we currently have no way of defending against
+the kind of firepower Plymouth can bring to bear against us.
+
+In the meantime, we must take drastic measures to maximize our chances for survival.  Our spies have identified a
+massive research complex, where Eden continues its efforts to develop a counteragent to combat the Blight.  It seems
+that the researchers there may be on the cusp of a breakthrough.  Unfortunately, this research complex is also home
+to Eden's weapons development program, which has made it a target for Plymouth.  We have detected an armed convoy
+en route to the area, and we can only assume their objective is to destroy the base there.  Eden has dispatched
+reinforcements to defend the base, but estimates suggest they will not make it in time.
+
+If we want to procure Eden's research data, it seems we will have to defend the base ourselves.  We have prepared a
+small military outpost in the foothills northeast of the complex.  Although initial construction has been completed,
+additional Smelters and Vehicle Factories will be needed to build up our forces quickly enough.  Morale has been
+holding steady for now but is beginning to fluctuate, so don't neglect the needs of our people.
+
+Eden has multiple Advanced Labs in the area that share a secure network.  Each lab maintains backups of all research
+data; so as long as one lab is able to finish the counteragent research, we will be able to acquire the data we need.
+However, the more labs that remain operational, the sooner Eden will be able to finish the research.  Protecting
+multiple labs will allow you to complete your mission more quickly, but don't stretch your forces too thin.
+
+Once Eden has finished its research project, use a Scout to transmit the data from any operational Advanced Lab.
+Our scientists will then need some time to analyze the data and hopefully find something we can use to buy us time
+against the Blight.  Once that analysis is complete, we can then abandon the area, and let the conflict between
+Eden and Plymouth play out on its own.
+
+One final word of caution: Eden does not welcome our assistance.  Their forces will fire on us, and you should
+expect them to launch attacks against our outpost.  Defend our position as necessary but avoid confrontation
+with their forces as much as possible.  Plymouth may also divert some of its forces to attack us, so be ready for
+anything.
+
+Keep those labs safe, Commanders.  Our survival depends on getting that research.

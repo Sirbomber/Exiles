@@ -1333,7 +1333,7 @@ BEGIN_TECH "Enable Microbe Walls" 09001
     DESCRIPTION     "This space intentionally left blank."
     TEASER          "This space intentionally left blank."
     REQUIRES        09000
-    COST            3
+    COST            -1
     MAX_SCIENTISTS  1
     LAB             1
 END_TECH
